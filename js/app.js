@@ -12,6 +12,8 @@
       toMenu: "Смотреть меню", search: "Поиск: филадельфия, пепперони…",
       nothing: "Ничего не нашли. Попробуйте другое название.",
       reviews: "Отзывы гостей", tagline: "Пицца · Роллы · Доставка", workDaily: "Работаем ежедневно",
+      reviewsNote: "Настоящие отзывы наших гостей на 2GIS", leaveReview: "Оставить отзыв в 2GIS",
+      allReviews: "Все отзывы", heroReviews: "Что говорят гости", reviewsChip: "★ Отзывы",
       yourOrder: "Ваш заказ", cartEmpty: "Корзина пока пустая. Добавьте что-нибудь вкусное из меню.",
       delivery: "Доставка", pickup: "Самовывоз", name: "Имя", phone: "Телефон",
       address: "Адрес доставки", addressPh: "Улица, дом, квартира / подъезд",
@@ -31,6 +33,8 @@
       toMenu: "Мәзірді қарау", search: "Іздеу: филадельфия, пепперони…",
       nothing: "Ештеңе табылмады. Басқа атауды көріңіз.",
       reviews: "Қонақтардың пікірлері", tagline: "Пицца · Роллдар · Жеткізу", workDaily: "Күн сайын жұмыс істейміз",
+      reviewsNote: "Қонақтарымыздың 2GIS-тегі шынайы пікірлері", leaveReview: "2GIS-те пікір қалдыру",
+      allReviews: "Барлық пікірлер", heroReviews: "Қонақтар не дейді", reviewsChip: "★ Пікірлер",
       yourOrder: "Сіздің тапсырысыңыз", cartEmpty: "Себет әзірге бос. Мәзірден дәмді бірдеңе қосыңыз.",
       delivery: "Жеткізу", pickup: "Өзім алып кетемін", name: "Атыңыз", phone: "Телефон",
       address: "Жеткізу мекенжайы", addressPh: "Көше, үй, пәтер / кіреберіс",
@@ -177,6 +181,7 @@
       html += '<section class="cat" id="cat-' + cat.id + '"><h2 class="cat__title">' + esc(name(cat)) + "</h2>" +
         gridsHtml(items, cat.icon) + "</section>";
     });
+    if (hasGuestReviews()) chips += '<a class="chip chip--reviews" href="#reviews">' + esc(t("reviewsChip")) + "</a>";
     menuEl.innerHTML = html;
     catsEl.innerHTML = chips;
     $("#emptySearch").hidden = any;
@@ -394,12 +399,34 @@
   });
 
   /* ---------------- reviews ---------------- */
+  function hasGuestReviews() { return (CFG.guestReviews || []).length > 0; }
+
   function renderReviews() {
+    var guests = CFG.guestReviews || [];
     var ids = (CFG.reviews || []).filter(Boolean);
-    if (!ids.length) return;
-    $("#reviewsGrid").innerHTML = ids.map(function (id) {
-      return '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '" title="Отзыв" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>';
-    }).join("");
+    if (!guests.length && !ids.length) return;
+
+    if (guests.length) {
+      $("#guestReviews").innerHTML = guests.map(function (r) {
+        var initial = String(r.name || "?").trim().charAt(0).toUpperCase();
+        return '<figure class="rv">' +
+          '<div class="rv__stars" aria-label="5/5">★★★★★</div>' +
+          '<blockquote class="rv__text">' + esc(r.text) + "</blockquote>" +
+          '<figcaption class="rv__who"><span class="rv__ava" aria-hidden="true">' + esc(initial) + "</span>" +
+            '<span><b>' + esc(r.name) + "</b><small>" + esc(r.date || "") + " · 2GIS</small></span></figcaption>" +
+          "</figure>";
+      }).join("");
+      $("#heroReviews").hidden = false;
+    }
+    if (CFG.twogis) {
+      $("#rvLeave").href = CFG.twogis; $("#rvAll").href = CFG.twogis; $("#reviewsCtas").hidden = false;
+      $("#gisLink").href = CFG.twogis; $("#gisLink").hidden = false;
+    }
+    if (ids.length) {
+      $("#reviewsGrid").innerHTML = ids.map(function (id) {
+        return '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '" title="Отзыв" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+      }).join("");
+    }
     $("#reviews").hidden = false;
   }
 
