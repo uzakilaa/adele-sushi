@@ -177,7 +177,8 @@
     var ctrl = q > 0
       ? '<div class="qty"><button type="button" data-act="dec" aria-label="−">−</button><span>' + q + '</span><button type="button" data-act="inc" aria-label="+">+</button></div>'
       : '<button type="button" class="add-btn" data-act="inc" aria-label="' + esc(t("add")) + '">+<span class="add-btn__text"> ' + esc(t("add")) + '</span></button>';
-    return '<span class="price">' + money(price) + "</span>" + ctrl;
+    var old = !it.v && it.old > price ? '<s class="price-old">' + money(it.old) + "</s>" : "";
+    return '<span class="price">' + money(price) + old + "</span>" + ctrl;
   }
 
   function cardHtml(it, icon) {
@@ -236,7 +237,9 @@
           ? '<span class="chip__ico chip__ico--photo" aria-hidden="true"><img src="' + esc(cat.thumb) + '" alt="" width="32" height="32" decoding="async"></span>'
           : '<span class="chip__ico" aria-hidden="true">' + (ICONS[cat.icon] || "") + "</span>") +
         esc(name(cat)) + "</a>";
+      var note = state.lang === "kk" && cat.notek ? cat.notek : cat.note;
       html += '<section class="cat" id="cat-' + cat.id + '"><h2 class="cat__title">' + esc(name(cat)) + "</h2>" +
+        (note ? '<p class="cat__note">' + esc(note) + "</p>" : "") +
         gridsHtml(items, cat.icon) + "</section>";
     });
     menuEl.innerHTML = html;

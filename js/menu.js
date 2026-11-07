@@ -68,6 +68,20 @@ window.MENU = [
     ]
   },
   {
+    id: "lunch", n: "Бизнес-ланчи", nk: "Бизнес-ланчтар", icon: "combo", thumb: "img/menu/l-sashe.webp",
+    note: "Пн-чт, 11:00-16:00", notek: "Дс-Бс, 11:00-16:00",
+    items: [
+      { id: "l-panini", img: "img/menu/l-panini.webp", n: "Панини + фри + кола 0,5 л", nk: "Панини + фри + кола 0,5 л", p: 2100, old: 2500 },
+      { id: "l-cal", img: "img/menu/l-cal.webp", n: "Калифорния темпура + фри + кола 0,5 л", nk: "Калифорния темпура + фри + кола 0,5 л", p: 2500, old: 3250 },
+      { id: "l-sashe", img: "img/menu/l-sashe.webp", n: "Саше + фри + кола 0,5 л", nk: "Саше + фри + кола 0,5 л", p: 2600, old: 3500 },
+      { id: "l-pep", img: "img/menu/l-pep.webp", n: "Пепперони + кола 0,5 л", nk: "Пепперони + кола 0,5 л", p: 2700, old: 3000 },
+      { id: "l-two", img: "img/menu/l-two.webp", n: "Обед на двоих", nk: "Екеуге түскі ас", p: 4900, old: 6800,
+        d: "2 саше + 2 фри + кола 1 л", dk: "2 саше + 2 фри + кола 1 л" },
+      { id: "l-three", img: "img/menu/l-three.webp", n: "Обед на троих", nk: "Үшеуге түскі ас", p: 7200, old: 9550,
+        d: "2 саше + Калифорния темпура + 3 фри + кола 1 л", dk: "2 саше + Калифорния темпура + 3 фри + кола 1 л" }
+    ]
+  },
+  {
     id: "pizza", n: "Пицца", nk: "Пицца", icon: "pizza", thumb: "img/menu/p-pep.webp",
     items: [
       { id: "p-veg", img: "img/menu/p-veg.webp", n: "Пицца Овощная", nk: "Көкөніс пиццасы", p: 2000,
