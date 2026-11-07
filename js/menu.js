@@ -13,7 +13,7 @@
  */
 window.MENU = [
   {
-    id: "new", n: "Новинки", nk: "Жаңалықтар", icon: "star",
+    id: "new", n: "Новинки", nk: "Жаңалықтар", icon: "star", thumb: "img/menu/sashe.webp",
     items: [
       { id: "sashe", img: "img/menu/sashe.webp", n: "Блюдо «Саше»", nk: "«Саше» тағамы",
         v: [
@@ -30,7 +30,7 @@ window.MENU = [
     ]
   },
   {
-    id: "combo", n: "Комбо", nk: "Комбо", icon: "combo",
+    id: "combo", n: "Комбо", nk: "Комбо", icon: "combo", thumb: "img/menu/c-family.webp",
     items: [
       { id: "c-two", img: "img/menu/c-two.webp", shape: "tall", n: "Комбо для двоих", nk: "Екі адамға арналған комбо", p: 5200,
         d: "саше с сёмгой, панини с мясным фаршем, кола 1 л",
@@ -68,7 +68,7 @@ window.MENU = [
     ]
   },
   {
-    id: "pizza", n: "Пицца", nk: "Пицца", icon: "pizza",
+    id: "pizza", n: "Пицца", nk: "Пицца", icon: "pizza", thumb: "img/menu/p-pep.webp",
     items: [
       { id: "p-veg", n: "Пицца Овощная", nk: "Көкөніс пиццасы", p: 2000,
         d: "помидоры, огурцы, болгарский перец, оливки",
@@ -109,7 +109,7 @@ window.MENU = [
     ]
   },
   {
-    id: "fast", n: "Фастфуд", nk: "Фастфуд", icon: "fries",
+    id: "fast", n: "Фастфуд", nk: "Фастфуд", icon: "fries", thumb: "img/menu/f-wings.webp",
     items: [
       { id: "f-wings", img: "img/menu/f-wings.webp", n: "Крылышки", nk: "Қанаттар",
         d: "не острые крылышки", dk: "ащы емес қанаттар",
@@ -128,7 +128,7 @@ window.MENU = [
     ]
   },
   {
-    id: "sets", n: "Сеты роллов", nk: "Ролл сеттері", icon: "set",
+    id: "sets", n: "Сеты роллов", nk: "Ролл сеттері", icon: "set", thumb: "img/menu/s-trio.webp",
     items: [
       { id: "s-tempura", img: "img/menu/s-tempura.webp", n: "Сет «Темпура»", p: 4600,
         d: "Саке темпура, Калифорния темпура" },
@@ -167,7 +167,7 @@ window.MENU = [
     ]
   },
   {
-    id: "baked", n: "Запечённые роллы", nk: "Пісірілген роллдар", icon: "baked",
+    id: "baked", n: "Запечённые роллы", nk: "Пісірілген роллдар", icon: "baked", thumb: "img/menu/b-phila.webp",
     items: [
       { id: "b-austin", img: "img/menu/b-austin.webp", n: "Остин", p: 2450,
         d: "сыр, лосось, кунжут, грибная шапка",
@@ -189,7 +189,7 @@ window.MENU = [
     ]
   },
   {
-    id: "cold", n: "Холодные роллы", nk: "Суық роллдар", icon: "roll",
+    id: "cold", n: "Холодные роллы", nk: "Суық роллдар", icon: "roll", thumb: "img/menu/r-dragon.webp",
     items: [
       { id: "r-cal", img: "img/menu/r-cal.webp", n: "Калифорния с крабом", nk: "Крабты калифорния", p: 1990,
         d: "сыр, краб, огурцы, масаго", dk: "ірімшік, краб, қияр, масаго" },
@@ -206,7 +206,7 @@ window.MENU = [
     ]
   },
   {
-    id: "fried", n: "Жареные роллы", nk: "Қуырылған роллдар", icon: "tempura",
+    id: "fried", n: "Жареные роллы", nk: "Қуырылған роллдар", icon: "tempura", thumb: "img/menu/t-ebi.webp",
     items: [
       { id: "t-cal", img: "img/menu/t-cal.webp", n: "Калифорния темпура", p: 2150,
         d: "огурцы, краб, масаго", dk: "қияр, краб, масаго" },
@@ -223,7 +223,7 @@ window.MENU = [
     ]
   },
   {
-    id: "classic", n: "Классические роллы", nk: "Классикалық роллдар", icon: "maki",
+    id: "classic", n: "Классические роллы", nk: "Классикалық роллдар", icon: "maki", thumb: "img/menu/m-salmon.webp",
     items: [
       { id: "m-cuc", img: "img/menu/m-cuc.webp", n: "Маки огурец", nk: "Маки қияр", p: 850 },
       { id: "m-chukka", img: "img/menu/m-chukka.webp", n: "Маки чукка", p: 900 },
@@ -234,7 +234,7 @@ window.MENU = [
     ]
   },
   {
-    id: "newsushi", n: "Новинки суши", nk: "Суши жаңалықтары", icon: "star",
+    id: "newsushi", n: "Новинки суши", nk: "Суши жаңалықтары", icon: "star", thumb: "img/menu/n-ebikuro.webp",
     items: [
       { id: "n-midori", img: "img/menu/n-midori.webp", n: "Мидори", p: 2400,
         d: "лосось, огурцы, сыр, тобико", dk: "албырт, қияр, ірімшік, тобико" },
@@ -250,7 +250,7 @@ window.MENU = [
     ]
   },
   {
-    id: "waffles", n: "Бельгийские вафли", nk: "Бельгиялық вафлилер", icon: "waffle",
+    id: "waffles", n: "Бельгийские вафли", nk: "Бельгиялық вафлилер", icon: "waffle", thumb: "img/menu/w-ice.webp",
     items: [
       { id: "w-cond", n: "Вафли со сгущёнкой", nk: "Қоюлатылған сүтті вафли", p: 700 },
       { id: "w-fruit", img: "img/menu/w-fruit.webp", n: "Вафли с фруктами, сгущёнкой и вареньем", nk: "Жеміс, қоюлатылған сүт және тосап қосылған вафли", p: 1200 },

@@ -194,7 +194,10 @@
       if (!items.length) return;
       any = true;
       chips += '<a class="chip" href="#cat-' + cat.id + '" data-cat="' + cat.id + '">' +
-        '<span class="chip__ico" aria-hidden="true">' + (ICONS[cat.icon] || "") + "</span>" + esc(name(cat)) + "</a>";
+        (cat.thumb
+          ? '<span class="chip__ico chip__ico--photo" aria-hidden="true"><img src="' + esc(cat.thumb) + '" alt="" width="32" height="32" decoding="async"></span>'
+          : '<span class="chip__ico" aria-hidden="true">' + (ICONS[cat.icon] || "") + "</span>") +
+        esc(name(cat)) + "</a>";
       html += '<section class="cat" id="cat-' + cat.id + '"><h2 class="cat__title">' + esc(name(cat)) + "</h2>" +
         gridsHtml(items, cat.icon) + "</section>";
     });
@@ -204,6 +207,27 @@
     catsEl.innerHTML = chips;
     $("#emptySearch").hidden = any;
     observeCats();
+    observeReveal();
+    // чипы «въезжают» только при первой загрузке, а не при каждом поиске
+    if (!catsEl.classList.contains("no-intro")) setTimeout(function () { catsEl.classList.add("no-intro"); }, 900);
+  }
+
+  /* Cards fade up as they scroll into view */
+  var revealIo = null;
+  function observeReveal() {
+    if (!("IntersectionObserver" in window)) return;
+    if (revealIo) revealIo.disconnect();
+    revealIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("is-in"); revealIo.unobserve(en.target); }
+      });
+    }, { rootMargin: "0px 0px -40px 0px" });
+    $$(".card, .biz-card", document).forEach(function (c, i) {
+      if (c.classList.contains("is-in")) return;
+      c.classList.add("reveal");
+      c.style.setProperty("--d", (i % 4) * 70 + "ms");
+      revealIo.observe(c);
+    });
   }
 
   function refreshCard(id) {
@@ -469,6 +493,7 @@
             '<a class="btn btn--ghost" href="' + esc(wa) + '" target="_blank" rel="noopener">' + esc(t("bizWrite")) + "</a>" +
           "</div></div></article>";
     }).join("");
+    observeReveal();
   }
 
   /* Reviews carousel: one row, arrows scroll by one card */
