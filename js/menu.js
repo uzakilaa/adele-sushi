@@ -241,7 +241,7 @@ window.MENU = [
       { id: "n-ebikuro", img: "img/menu/n-ebikuro.webp", n: "Эби Куро", p: 2600,
         d: "креветки, сыр, апельсин, тобико, чеддер",
         dk: "асшаян, ірімшік, апельсин, тобико, чеддер" },
-      { id: "n-shiitake", img: "img/menu/n-shiitake.webp", n: "Шиитаки", p: 2400,
+      { id: "n-shiitake", hidden: true, img: "img/menu/n-shiitake.webp", n: "Шиитаки", p: 2400,
         d: "лосось, авокадо, сыр, стружка тунца",
         dk: "албырт, авокадо, ірімшік, тунец қырындысы" },
       { id: "n-nikibi", img: "img/menu/n-nikibi.webp", n: "Никиби", p: 3800,
@@ -253,7 +253,7 @@ window.MENU = [
     id: "waffles", n: "Бельгийские вафли", nk: "Бельгиялық вафлилер", icon: "waffle", thumb: "img/menu/w-ice.webp",
     items: [
       { id: "w-cond", img: "img/menu/w-cond.webp", n: "Вафли со сгущёнкой", nk: "Қоюлатылған сүтті вафли", p: 700 },
-      { id: "w-fruit", img: "img/menu/w-fruit.webp", n: "Вафли с фруктами, сгущёнкой и вареньем", nk: "Жеміс, қоюлатылған сүт және тосап қосылған вафли", p: 1200 },
+      { id: "w-fruit", hidden: true, img: "img/menu/w-fruit.webp", n: "Вафли с фруктами, сгущёнкой и вареньем", nk: "Жеміс, қоюлатылған сүт және тосап қосылған вафли", p: 1200 },
       { id: "w-ice", img: "img/menu/w-ice.webp", n: "Вафли с мороженым", nk: "Балмұздақты вафли", p: 1600 }
     ]
   }
