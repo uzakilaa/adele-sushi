@@ -260,7 +260,7 @@ a { color: inherit; }
 /* ---------- Shared section headings ---------- */
 .promos h2, .steps h2, .trust h2, .about h2, .faq h2 { font-family: var(--serif); font-size: 26px; margin: 16px 0 4px; line-height: 1.15; }
 .sec-note { color: var(--muted); margin: 0 0 16px; font-size: 14px; }
-.steps, .trust, .about, .faq { padding-top: 22px; padding-bottom: 12px; scroll-margin-top: calc(var(--header-h) + 60px); }
+.steps, .about, .faq { padding-top: 22px; padding-bottom: 12px; scroll-margin-top: calc(var(--header-h) + 60px); }
 
 /* Hero promise */
 .hero__kicker { margin: 10px 0 0; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
@@ -566,4 +566,71 @@ html, body { overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1 !important; }
+}
+
+/* ---------- Site navigation ---------- */
+.topnav { display: none; }
+.topnav a {
+  position: relative; padding: 8px 2px; font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none;
+  transition: color .2s;
+}
+.topnav a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 2px; border-radius: 2px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .25s ease;
+}
+.topnav a:hover { color: var(--accent); }
+.topnav a:hover::after { transform: scaleX(1); }
+
+.burger {
+  width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--line); background: var(--card);
+  display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+}
+.burger span { width: 18px; height: 2px; border-radius: 2px; background: var(--ink); transition: transform .25s ease; }
+.burger:hover span:nth-child(2) { transform: translateX(3px); }
+
+.sidenav {
+  position: fixed; z-index: 50; top: 0; right: 0; bottom: 0; width: min(340px, 88%);
+  background: var(--bg); display: flex; flex-direction: column; overflow-y: auto;
+  transform: translateX(100%); transition: transform .3s cubic-bezier(.22, 1, .36, 1);
+  box-shadow: -20px 0 50px rgba(0, 0, 0, .15);
+}
+.sidenav.is-open { transform: none; }
+.sidenav__head { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+.sidenav__head img { border-radius: 50%; }
+.sidenav__head b { flex: 1; font-family: var(--serif); font-size: 19px; }
+.sidenav__links { display: flex; flex-direction: column; padding: 8px 8px; }
+.sidenav__links a {
+  padding: 13px 12px; border-radius: 12px; font-size: 17px; font-weight: 600; text-decoration: none;
+  transition: background .2s, padding-left .2s;
+}
+.sidenav__links a:hover, .sidenav__links a:focus-visible { background: var(--accent-soft); padding-left: 18px; }
+.sidenav.is-open .sidenav__links a { animation: chip-in .45s cubic-bezier(.22, 1, .36, 1) both; }
+.sidenav.is-open .sidenav__links a:nth-child(2) { animation-delay: .04s; }
+.sidenav.is-open .sidenav__links a:nth-child(3) { animation-delay: .08s; }
+.sidenav.is-open .sidenav__links a:nth-child(4) { animation-delay: .12s; }
+.sidenav.is-open .sidenav__links a:nth-child(5) { animation-delay: .16s; }
+.sidenav.is-open .sidenav__links a:nth-child(6) { animation-delay: .2s; }
+.sidenav__contacts { margin-top: auto; padding: 16px; border-top: 1px solid var(--line); display: grid; gap: 8px; }
+.sidenav__contacts p { margin: 0; color: var(--muted); font-size: 14px; }
+.sidenav__contacts .btn { width: 100%; height: 46px; }
+.sidenav__social { display: flex; gap: 14px; justify-content: center; padding-top: 4px; }
+.sidenav__social a { font-weight: 600; font-size: 14px; color: var(--accent); text-decoration: none; }
+
+/* ---------- Trust strip under the hero ---------- */
+.trust-strip {
+  list-style: none; margin-top: 4px; margin-bottom: 0; display: flex; flex-wrap: wrap; gap: 8px;
+}
+.trust-strip li {
+  display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px;
+  background: var(--card); border: 1px solid var(--line); font-size: 13px; font-weight: 600;
+}
+.trust-strip svg { color: var(--accent); flex: 0 0 auto; }
+
+/* Trust inside About */
+.about .trust { padding-top: 22px; }
+.trust__title { font-family: var(--serif); font-size: 22px; margin: 0 0 4px; }
+
+@media (min-width: 1000px) {
+  .topnav { display: flex; gap: 22px; margin: 0 auto 0 32px; }
+  .burger { display: none; }
 }

@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=PT+Serif:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 
@@ -28,12 +28,23 @@
           <span class="brand__sub">SUSHI</span>
         </span>
       </a>
+      <nav class="topnav" aria-label="Разделы сайта">
+        <a href="#menu" data-i18n="navMenu">Меню</a>
+        <a href="#promos" data-i18n="navPromos">Акции</a>
+        <a href="#about" data-i18n="navAbout">О нас</a>
+        <a href="#reviews" data-i18n="navReviews">Отзывы</a>
+        <a href="#business" data-i18n="navBiz">Для компаний</a>
+        <a href="#faq" data-i18n="navFaq">Вопросы</a>
+      </nav>
       <div class="header__actions">
         <button class="lang-btn" id="langBtn" type="button" aria-label="Сменить язык">ҚАЗ</button>
         <button class="cart-btn" id="cartBtn" type="button">
           <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 7h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 7zm4 0V6a3 3 0 0 1 6 0v1"/></svg>
           <span class="cart-btn__label" data-i18n="cart">Корзина</span>
           <span class="cart-btn__count" id="cartCount" hidden>0</span>
+        </button>
+        <button class="burger" id="navOpen" type="button" aria-label="Открыть меню сайта" aria-controls="sideNav" aria-expanded="false">
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
@@ -76,6 +87,13 @@
       <img class="hero__logo" src="img/logo.jpg" alt="Adele Sushi: пицца, роллы, доставка" width="800" height="800">
     </section>
 
+    <ul class="trust-strip container" aria-label="Почему Adele">
+      <li><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg><span data-i18n="ts1">с 2022 года</span></li>
+      <li><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg><span data-i18n="ts2">открытая кухня</span></li>
+      <li><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z M9 12l2 2 4-4"/></svg><span data-i18n="ts3">100% халяль</span></li>
+      <li><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="currentColor"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" opacity=".4"/></svg><span data-i18n="ts4">эфиры в TikTok</span></li>
+    </ul>
+
     <section class="promos container" id="promos" hidden aria-labelledby="promosTitle">
       <h2 id="promosTitle" data-i18n="promosTitle">Акции</h2>
       <div class="promos__list" id="promoList"></div>
@@ -102,12 +120,6 @@
       </ol>
     </section>
 
-    <section class="biz container" id="business" hidden>
-      <h2 data-i18n="bizTitle">Для компаний</h2>
-      <p class="biz__note" data-i18n="bizNote">Обеды для коллективов, фуршеты и поставки в магазины. Скачайте предложение или напишите нам.</p>
-      <div class="biz__grid" id="bizGrid"></div>
-    </section>
-
     <section class="reviews container" id="reviews" hidden>
       <div class="reviews__head">
         <h2 data-i18n="reviews">Отзывы гостей</h2>
@@ -127,21 +139,6 @@
         <a class="btn btn--ghost" id="rvAll" href="#" target="_blank" rel="noopener" data-i18n="allReviews">Все отзывы</a>
       </div>
       <div class="reviews__grid" id="reviewsGrid"></div>
-    </section>
-
-    <section class="trust container" id="trust">
-      <h2 data-i18n="trustTitle">Почему нам доверяют семьи</h2>
-      <p class="sec-note" data-i18n="trustNote">Нам нечего прятать, поэтому кухня открыта.</p>
-      <div class="trust__grid">
-        <div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
-          <h3 data-i18n="tr1t">Видно, как готовят ваш заказ</h3><p data-i18n="tr1d">Открытая кухня и прямые эфиры в TikTok по пятницам и воскресеньям в 19:00. Заказы называем по имени.</p></div>
-        <div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/></svg></span>
-          <h3 data-i18n="tr2t">Халяль и чистота</h3><p data-i18n="tr2d">Все продукты халяльные. Униформа, перчатки и кепки видно в каждом эфире.</p></div>
-        <div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></span>
-          <h3 data-i18n="tr3t">Саше есть только у нас</h3><p data-i18n="tr3d">Фирменное блюдо, за которым приходят со всего города.</p></div>
-        <div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>
-          <h3 data-i18n="tr4t">Хозяин сам на кухне</h3><p data-i18n="tr4d">Азамат лично выходит на смены и отвечает за каждую коробку.</p></div>
-      </div>
     </section>
 
     <section class="about container" id="about">
@@ -172,12 +169,37 @@
           <figure class="about__ph"><img src="img/about/cafe-room.webp" alt="Зал кафе Adele" loading="lazy" width="667" height="868"></figure>
         </div>
       </div>
+    
+      <div class="trust" id="trust">
+      <h3 class="trust__title" data-i18n="trustTitle">Почему нам доверяют семьи</h3>
+      <p class="sec-note" data-i18n="trustNote">Нам нечего прятать, поэтому кухня открыта.</p>
+      <div class="trust__grid">
+        <div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+          <h3 data-i18n="tr1t">Видно, как готовят ваш заказ</h3><p data-i18n="tr1d">Открытая кухня и прямые эфиры в TikTok по пятницам и воскресеньям в 19:00. Заказы называем по имени.</p></div>
+        <div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/></svg></span>
+          <h3 data-i18n="tr2t">Халяль и чистота</h3><p data-i18n="tr2d">Все продукты халяльные. Униформа, перчатки и кепки видно в каждом эфире.</p></div>
+        <div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></span>
+          <h3 data-i18n="tr3t">Саше есть только у нас</h3><p data-i18n="tr3d">Фирменное блюдо, за которым приходят со всего города.</p></div>
+        <div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>
+          <h3 data-i18n="tr4t">Хозяин сам на кухне</h3><p data-i18n="tr4d">Азамат лично выходит на смены и отвечает за каждую коробку.</p></div>
+      </div>
+    </div>
+    </section>
+
+    <section class="biz container" id="business" hidden>
+      <h2 data-i18n="bizTitle">Для компаний</h2>
+      <p class="biz__note" data-i18n="bizNote">Обеды для коллективов, фуршеты и поставки в магазины. Скачайте предложение или напишите нам.</p>
+      <div class="biz__grid" id="bizGrid"></div>
     </section>
 
     <section class="faq container" id="faq" hidden>
       <h2 data-i18n="faqTitle">Частые вопросы</h2>
       <div class="faq__list" id="faqList"></div>
     </section>
+
+
+
+
   </main>
 
   <footer class="footer">
@@ -267,6 +289,37 @@
     </div>
   </aside>
 
+  <!-- Меню сайта (телефон) -->
+  <div class="overlay" id="navOverlay" hidden></div>
+  <aside class="sidenav" id="sideNav" aria-hidden="true" aria-label="Меню сайта">
+    <div class="sidenav__head">
+      <img src="img/emblem.png" alt="" width="40" height="40">
+      <b>Adele Sushi</b>
+      <button class="icon-btn" id="navClose" type="button" aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <nav class="sidenav__links">
+      <a href="#menu" data-i18n="navMenu">Меню</a>
+      <a href="#promos" data-i18n="navPromos">Акции</a>
+      <a href="#about" data-i18n="navAbout">О нас</a>
+      <a href="#reviews" data-i18n="navReviews">Отзывы</a>
+      <a href="#business" data-i18n="navBiz">Для компаний</a>
+      <a href="#faq" data-i18n="navFaq">Вопросы</a>
+    </nav>
+    <div class="sidenav__contacts">
+      <p id="navAddr"></p>
+      <p id="navHours"></p>
+      <a class="btn btn--wa" id="navWa" href="#" target="_blank" rel="noopener" data-i18n="qWrite">Написать в WhatsApp</a>
+      <a class="btn btn--ghost" id="navCall" href="#"></a>
+      <div class="sidenav__social">
+        <a id="navIg" href="#" target="_blank" rel="noopener">Instagram</a>
+        <a id="navTt" href="#" target="_blank" rel="noopener">TikTok</a>
+        <a id="navGis" href="#" target="_blank" rel="noopener">2GIS</a>
+      </div>
+    </div>
+  </aside>
+
   <!-- Адрес и график -->
   <dialog class="info" id="infoDlg" aria-labelledby="infoTitle">
     <div class="info__head">
@@ -289,8 +342,8 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/config.js?v=7"></script>
-  <script src="js/menu.js?v=7"></script>
-  <script src="js/app.js?v=7"></script>
+  <script src="js/config.js?v=8"></script>
+  <script src="js/menu.js?v=8"></script>
+  <script src="js/app.js?v=8"></script>
 </body>
 </html>

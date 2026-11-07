@@ -24,6 +24,8 @@
       bizPdf: "Скачать предложение (PDF)", bizWrite: "Обсудить в WhatsApp", bizChip: "Для компаний", prev: "Назад", next: "Вперёд",
       heroKicker: "Доставка суши, роллов и пиццы", heroPromise: "минут к названному времени · готовим на открытой кухне",
       promosTitle: "Акции", faqTitle: "Частые вопросы", faqChip: "Вопросы",
+      navMenu: "Меню", navPromos: "Акции", navAbout: "О нас", navReviews: "Отзывы", navBiz: "Для компаний", navFaq: "Вопросы",
+      ts1: "с 2022 года", ts2: "открытая кухня", ts3: "100% халяль", ts4: "эфиры в TikTok", aboutTrust: "Почему нам доверяют семьи",
       stepsTitle: "Корзина → WhatsApp → ужин у двери", stepsNote: "Без регистрации и приложений.",
       step1t: "Соберите корзину", step1d: "Выберите блюда или комбо на компанию.",
       step2t: "Назовите время и адрес", step2d: "Пришлите геометку в WhatsApp, и курьер не будет звонить.",
@@ -70,6 +72,8 @@
       bizPdf: "Ұсынысты жүктеу (PDF)", bizWrite: "WhatsApp-та талқылау", bizChip: "Компанияларға", prev: "Артқа", next: "Алға",
       heroKicker: "Суши, ролл және пицца жеткізу", heroPromise: "минут дәлдікпен айтқан уақытқа · ашық ас үйде дайындаймыз",
       promosTitle: "Акциялар", faqTitle: "Жиі қойылатын сұрақтар", faqChip: "Сұрақтар",
+      navMenu: "Мәзір", navPromos: "Акциялар", navAbout: "Біз туралы", navReviews: "Пікірлер", navBiz: "Компанияларға", navFaq: "Сұрақтар",
+      ts1: "2022 жылдан бері", ts2: "ашық ас үй", ts3: "100% халал", ts4: "TikTok-та эфир", aboutTrust: "Отбасылар бізге неге сенеді",
       stepsTitle: "Себет → WhatsApp → кешкі ас есігіңізде", stepsNote: "Тіркелусіз және қосымшасыз.",
       step1t: "Себетті толтырыңыз", step1d: "Тағамдарды немесе компанияға комбо таңдаңыз.",
       step2t: "Уақыт пен мекенжайды жазыңыз", step2d: "WhatsApp-қа геолокация жіберіңіз, курьер қоңырау шалмайды.",
@@ -235,9 +239,6 @@
       html += '<section class="cat" id="cat-' + cat.id + '"><h2 class="cat__title">' + esc(name(cat)) + "</h2>" +
         gridsHtml(items, cat.icon) + "</section>";
     });
-    if ((CFG.business || []).length) chips += '<a class="chip chip--biz" href="#business">' + esc(t("bizChip")) + "</a>";
-    if (hasGuestReviews()) chips += '<a class="chip chip--reviews" href="#reviews">' + esc(t("reviewsChip")) + "</a>";
-    if ((CFG.faq || []).length) chips += '<a class="chip chip--biz" href="#faq">' + esc(t("faqChip")) + "</a>";
     menuEl.innerHTML = html;
     catsEl.innerHTML = chips;
     $("#emptySearch").hidden = any;
@@ -613,6 +614,9 @@
     $("#infoAddr").textContent = CFG.address ? CFG.address[state.lang] : CFG.city[state.lang];
     $("#infoHours").textContent = t("iDaily") + ", " + CFG.open + "-" + CFG.close;
     $("#quickWa").href = "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(t("waHello"));
+    $("#navWa").href = $("#quickWa").href;
+    $("#navAddr").textContent = $("#infoAddr").textContent;
+    $("#navHours").textContent = $("#infoHours").textContent;
   }
   $("#infoOpen").addEventListener("click", function () {
     fillInfo();
@@ -622,6 +626,25 @@
   infoDlg.addEventListener("click", function (e) { if (e.target === infoDlg && infoDlg.close) infoDlg.close(); });
   $("#infoMap").href = CFG.map || CFG.twogis || "#";
   $("#infoCall").textContent = CFG.phoneLabel; $("#infoCall").href = "tel:" + CFG.phone;
+
+  /* ---------------- site menu (phone) ---------------- */
+  var navOpenState = false;
+  function setNav(open) {
+    navOpenState = open;
+    $("#sideNav").classList.toggle("is-open", open);
+    $("#sideNav").setAttribute("aria-hidden", open ? "false" : "true");
+    $("#navOpen").setAttribute("aria-expanded", open ? "true" : "false");
+    $("#navOverlay").hidden = !open;
+    document.body.style.overflow = open ? "hidden" : "";
+    if (open) setTimeout(function () { $("#navClose").focus(); }, 50);
+  }
+  $("#navOpen").addEventListener("click", function () { setNav(true); });
+  $("#navClose").addEventListener("click", function () { setNav(false); });
+  $("#navOverlay").addEventListener("click", function () { setNav(false); });
+  $$(".sidenav__links a").forEach(function (a) { a.addEventListener("click", function () { setNav(false); }); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && navOpenState) setNav(false); });
+  $("#navCall").textContent = CFG.phoneLabel; $("#navCall").href = "tel:" + CFG.phone;
+  $("#navIg").href = CFG.instagram; $("#navTt").href = CFG.tiktok; $("#navGis").href = CFG.map || CFG.twogis || "#";
 
   // контакты из конфига
   $("#heroCall").href = "tel:" + CFG.phone;
