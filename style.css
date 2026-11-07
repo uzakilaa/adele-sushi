@@ -642,3 +642,46 @@ html, body { overflow-x: clip; }
 }
 .price { display: inline-flex; flex-direction: column; line-height: 1.1; }
 .price-old { font-size: 12.5px; font-weight: 500; color: var(--muted); }
+
+/* ---------- Business lunch section ---------- */
+.cat--lunch {
+  margin-top: 26px; padding: 18px 14px 16px; border-radius: 22px;
+  background: linear-gradient(160deg, #2a1f19 0%, #3a2a20 55%, #4a3226 100%);
+  box-shadow: 0 16px 40px rgba(29, 27, 25, .18);
+}
+.lunch-head { display: grid; gap: 10px; margin-bottom: 16px; color: #f6efe7; }
+.lunch-head .cat__title { color: #fff; margin: 0; }
+.lunch-head__text p { margin: 4px 0 0; color: #e8cdb9; font-size: 14.5px; }
+.lunch-head__time {
+  display: inline-flex; align-items: center; gap: 10px; justify-self: start;
+  padding: 10px 16px; border-radius: 14px; background: var(--accent); color: #fff;
+  box-shadow: 0 8px 20px rgba(196, 98, 58, .4);
+}
+.lunch-head__time b { display: block; font-size: 15px; line-height: 1.1; }
+.lunch-head__time small { display: block; font-size: 17px; font-weight: 700; letter-spacing: .02em; }
+.lunch-head__status {
+  justify-self: start; display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 12px; border-radius: 999px; background: rgba(255, 255, 255, .1); color: #e8cdb9; font-size: 13px; font-weight: 600;
+}
+.lunch-head__status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #9a8b80; }
+.lunch-head__status.is-open { color: #c9f2d7; }
+.lunch-head__status.is-open::before { background: #34d07a; box-shadow: 0 0 0 4px rgba(52, 208, 122, .25); animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 7px rgba(52, 208, 122, 0); } }
+.cat--lunch .card { border-color: transparent; }
+.cat--lunch .price { color: var(--accent); font-size: 18px; }
+
+/* Savings badge on the photo */
+.save-badge {
+  position: absolute; top: 10px; left: 10px; z-index: 1; padding: 5px 10px; border-radius: 999px;
+  background: #e0392b; color: #fff; font-size: 12.5px; font-weight: 700; box-shadow: 0 4px 12px rgba(224, 57, 43, .35);
+  transform: rotate(-4deg);
+}
+.card:hover .save-badge { animation: chip-pop .4s ease; }
+
+@media (min-width: 720px) {
+  .cat--lunch { padding: 24px 22px 22px; }
+  .lunch-head { grid-template-columns: 1fr auto; align-items: center; }
+  .lunch-head__status { grid-column: 1 / -1; }
+}
+.add-btn { white-space: nowrap; }
+.cat--lunch .card__foot { flex-wrap: wrap; row-gap: 8px; }

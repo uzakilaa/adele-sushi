@@ -24,6 +24,8 @@
       bizPdf: "Скачать предложение (PDF)", bizWrite: "Обсудить в WhatsApp", bizChip: "Для компаний", prev: "Назад", next: "Вперёд",
       heroKicker: "Доставка суши, роллов и пиццы", heroPromise: "минут к названному времени · готовим на открытой кухне",
       promosTitle: "Акции", faqTitle: "Частые вопросы", faqChip: "Вопросы",
+      lunchTitle: "Бизнес-ланчи", lunchSub: "Выгодные наборы на обед: экономия до 2 350 ₸.", lunchOnly: "Только по будням",
+      lunchNow: "Доступно сейчас", lunchLater: "Сейчас недоступно, ждём вас в пн-чт", save: "Выгода",
       navMenu: "Меню", navPromos: "Акции", navAbout: "О нас", navReviews: "Отзывы", navBiz: "Для компаний", navFaq: "Вопросы",
       ts1: "с 2022 года", ts2: "открытая кухня", ts3: "100% халяль", ts4: "эфиры в TikTok", aboutTrust: "Почему нам доверяют семьи",
       stepsTitle: "Корзина → WhatsApp → ужин у двери", stepsNote: "Без регистрации и приложений.",
@@ -72,6 +74,8 @@
       bizPdf: "Ұсынысты жүктеу (PDF)", bizWrite: "WhatsApp-та талқылау", bizChip: "Компанияларға", prev: "Артқа", next: "Алға",
       heroKicker: "Суши, ролл және пицца жеткізу", heroPromise: "минут дәлдікпен айтқан уақытқа · ашық ас үйде дайындаймыз",
       promosTitle: "Акциялар", faqTitle: "Жиі қойылатын сұрақтар", faqChip: "Сұрақтар",
+      lunchTitle: "Бизнес-ланчтар", lunchSub: "Түскі асқа тиімді жиынтықтар: 2 350 ₸-ге дейін үнем.", lunchOnly: "Тек жұмыс күндері",
+      lunchNow: "Қазір қолжетімді", lunchLater: "Қазір қолжетімсіз, Дс-Бс күтеміз", save: "Үнем",
       navMenu: "Мәзір", navPromos: "Акциялар", navAbout: "Біз туралы", navReviews: "Пікірлер", navBiz: "Компанияларға", navFaq: "Сұрақтар",
       ts1: "2022 жылдан бері", ts2: "ашық ас үй", ts3: "100% халал", ts4: "TikTok-та эфир", aboutTrust: "Отбасылар бізге неге сенеді",
       stepsTitle: "Себет → WhatsApp → кешкі ас есігіңізде", stepsNote: "Тіркелусіз және қосымшасыз.",
@@ -196,7 +200,8 @@
     }
     var d = desc(it);
     return '<article class="card" data-id="' + it.id + '">' +
-      '<div class="card__media' + (it.fit === "contain" ? " is-contain" : "") + (it.shape ? " card__media--" + it.shape : "") + '">' + media + "</div>" +
+      '<div class="card__media' + (it.fit === "contain" ? " is-contain" : "") + (it.shape ? " card__media--" + it.shape : "") + '">' + media +
+        (it.old > it.p ? '<span class="save-badge">' + esc(t("save")) + " " + money(it.old - it.p) + "</span>" : "") + "</div>" +
       '<div class="card__body">' +
         '<h3 class="card__name">' + esc(name(it)) + "</h3>" +
         (d ? '<p class="card__desc">' + esc(d) + "</p>" : "") +
@@ -220,6 +225,24 @@
     }).join("");
   }
 
+  /* Business lunch: banner with schedule and "available now" status (Kazakhstan time, UTC+5) */
+  function lunchOpenNow() {
+    var kz = new Date(Date.now() + 5 * 3600 * 1000);
+    var day = kz.getUTCDay(), min = kz.getUTCHours() * 60 + kz.getUTCMinutes();
+    return day >= 1 && day <= 4 && min >= 11 * 60 && min < 16 * 60;
+  }
+  function lunchHeadHtml(note) {
+    var open = lunchOpenNow();
+    return '<div class="lunch-head">' +
+      '<div class="lunch-head__text"><h2 class="cat__title">' + esc(t("lunchTitle")) + "</h2>" +
+      "<p>" + esc(t("lunchSub")) + "</p></div>" +
+      '<div class="lunch-head__time">' +
+        '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 7v5l3 2"/></svg>' +
+        '<span><b>' + esc(t("lunchOnly")) + "</b><small>" + esc(note || "") + "</small></span></div>" +
+      '<span class="lunch-head__status' + (open ? " is-open" : "") + '">' + esc(open ? t("lunchNow") : t("lunchLater")) + "</span>" +
+      "</div>";
+  }
+
   function matches(it) {
     if (!state.query) return true;
     var hay = norm([it.n, it.nk, it.d, it.dk].concat((it.v || []).map(function (v) { return v.l + " " + (v.lk || ""); })).join(" "));
@@ -238,8 +261,9 @@
           : '<span class="chip__ico" aria-hidden="true">' + (ICONS[cat.icon] || "") + "</span>") +
         esc(name(cat)) + "</a>";
       var note = state.lang === "kk" && cat.notek ? cat.notek : cat.note;
-      html += '<section class="cat" id="cat-' + cat.id + '"><h2 class="cat__title">' + esc(name(cat)) + "</h2>" +
-        (note ? '<p class="cat__note">' + esc(note) + "</p>" : "") +
+      var head = cat.id === "lunch" ? lunchHeadHtml(note) :
+        '<h2 class="cat__title">' + esc(name(cat)) + "</h2>" + (note ? '<p class="cat__note">' + esc(note) + "</p>" : "");
+      html += '<section class="cat' + (cat.id === "lunch" ? " cat--lunch" : "") + '" id="cat-' + cat.id + '">' + head +
         gridsHtml(items, cat.icon) + "</section>";
     });
     menuEl.innerHTML = html;
