@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=PT+Serif:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
@@ -46,7 +46,9 @@
     <section class="hero container">
       <div class="hero__text">
         <p class="hero__status" id="openStatus"></p>
-        <h1 data-i18n="heroTitle">Доставка суши, роллов и пиццы</h1>
+        <p class="hero__kicker" data-i18n="heroKicker">Доставка суши, роллов и пиццы</p>
+        <h1 data-i18n="heroTitle">Ужин для всей семьи точно к вашему времени</h1>
+        <p class="hero__promise"><b>±10</b> <span data-i18n="heroPromise">минут к названному времени · готовим на открытой кухне</span></p>
         <p class="hero__sub" data-i18n="heroSub">Кандыагаш · ежедневно 11:00–23:30</p>
         <a class="hero__reviews" href="#reviews" id="heroReviews" hidden>
           <span class="hero__stars" aria-hidden="true">★★★★★</span>
@@ -74,6 +76,11 @@
       <img class="hero__logo" src="img/logo.jpg" alt="Adele Sushi — пицца, роллы, доставка" width="800" height="800">
     </section>
 
+    <section class="promos container" id="promos" hidden aria-labelledby="promosTitle">
+      <h2 id="promosTitle" data-i18n="promosTitle">Акции</h2>
+      <div class="promos__list" id="promoList"></div>
+    </section>
+
     <div class="container search-wrap">
       <label class="search">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm9 3-4.3-4.3"/></svg>
@@ -84,6 +91,16 @@
     <div id="menu" class="menu container"></div>
     <p class="empty-search container" id="emptySearch" hidden data-i18n="nothing">Ничего не нашли. Попробуйте другое название.</p>
     <p class="photo-note container" data-i18n="photoNote">Фото блюд могут немного отличаться от подачи: оформление зависит от упаковки, а ингредиенты и граммовка всегда те же.</p>
+
+    <section class="steps container" id="howto">
+      <h2 data-i18n="stepsTitle">Корзина → WhatsApp → ужин у двери</h2>
+      <p class="sec-note" data-i18n="stepsNote">Без регистрации и приложений.</p>
+      <ol class="steps__list">
+        <li class="step"><span class="step__n">1</span><h3 data-i18n="step1t">Соберите корзину</h3><p data-i18n="step1d">Выберите блюда или комбо на компанию.</p></li>
+        <li class="step"><span class="step__n">2</span><h3 data-i18n="step2t">Назовите время и адрес</h3><p data-i18n="step2d">Пришлите геометку в WhatsApp — курьер не будет звонить.</p></li>
+        <li class="step"><span class="step__n">3</span><h3 data-i18n="step3t">Оплатите счёт и ждите</h3><p data-i18n="step3d">Пришлём счёт Kaspi или Halyk. Привезём ±10 минут к вашему времени.</p></li>
+      </ol>
+    </section>
 
     <section class="biz container" id="business" hidden>
       <h2 data-i18n="bizTitle">Для компаний</h2>
@@ -110,6 +127,56 @@
         <a class="btn btn--ghost" id="rvAll" href="#" target="_blank" rel="noopener" data-i18n="allReviews">Все отзывы</a>
       </div>
       <div class="reviews__grid" id="reviewsGrid"></div>
+    </section>
+
+    <section class="trust container" id="trust">
+      <h2 data-i18n="trustTitle">Почему нам доверяют семьи</h2>
+      <p class="sec-note" data-i18n="trustNote">Нам нечего прятать, поэтому кухня открыта.</p>
+      <div class="trust__grid">
+        <div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+          <h3 data-i18n="tr1t">Видно, как готовят ваш заказ</h3><p data-i18n="tr1d">Открытая кухня и прямые эфиры в TikTok по пятницам и воскресеньям в 19:00 — заказы называем по имени.</p></div>
+        <div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/></svg></span>
+          <h3 data-i18n="tr2t">Халяль и чистота</h3><p data-i18n="tr2d">Все продукты халяльные. Униформа, перчатки и кепки — это видно в каждом эфире.</p></div>
+        <div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></span>
+          <h3 data-i18n="tr3t">Саше есть только у нас</h3><p data-i18n="tr3d">Фирменное блюдо, за которым приходят со всего города.</p></div>
+        <div class="trust__item"><span class="trust__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>
+          <h3 data-i18n="tr4t">Хозяин сам на кухне</h3><p data-i18n="tr4d">Азамат лично выходит на смены и отвечает за каждую коробку.</p></div>
+      </div>
+    </section>
+
+    <section class="about container" id="about">
+      <div class="about__grid">
+        <div class="about__text">
+          <p class="about__kicker" data-i18n="aboutKicker">О нас</p>
+          <h2 data-i18n="aboutTitle">Делаем Кандыагаш вкуснее</h2>
+          <p class="about__lead" data-i18n="aboutLead">каждый день, каждым заказом</p>
+          <p data-i18n="aboutP1">Adele — уютное кафе на Жастык 44. Мы открылись 28 сентября 2022 года и хотим, чтобы за вкусными суши и пиццей не нужно было ехать в Актобе.</p>
+          <p data-i18n="aboutP2">Готовим как для своей семьи: из свежих продуктов, без экономии на начинке. Наше главное правило — «Для своих»: перед тем как отдать заказ, спрашиваем себя, отдали бы мы его своей маме или ребёнку. Если нет — переделываем.</p>
+          <ul class="about__facts">
+            <li data-i18n="fact1">с 2022 года</li>
+            <li data-i18n="fact2">2 зала · 25 мест</li>
+            <li data-i18n="fact3">открытая кухня</li>
+            <li data-i18n="fact4">100% халяль</li>
+          </ul>
+          <details class="about__more">
+            <summary data-i18n="aboutFounders">Кто за этим стоит</summary>
+            <div class="founders">
+              <img src="img/about/founders.webp" alt="Азамат и Гульнур — основатели Adele" width="600" height="600" loading="lazy">
+              <p data-i18n="foundersText">Азамат и Гульнур — основатели Adele. Азамат отвечает за вкус и стандарты качества и сам выходит на смены. Гульнур ведёт закупки и поставщиков — поэтому продукты всегда свежие, а цены честные.</p>
+            </div>
+          </details>
+        </div>
+        <div class="about__photos">
+          <figure class="about__ph about__ph--big"><img src="img/about/team.webp" alt="Команда Adele у входа в кафе" loading="lazy" width="1000" height="1196"><figcaption data-i18n="capTeam">Наша команда</figcaption></figure>
+          <figure class="about__ph"><img src="img/about/cafe-bar.webp" alt="Бар-касса в кафе Adele" loading="lazy" width="667" height="865"></figure>
+          <figure class="about__ph"><img src="img/about/cafe-room.webp" alt="Зал кафе Adele" loading="lazy" width="667" height="868"></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq container" id="faq" hidden>
+      <h2 data-i18n="faqTitle">Частые вопросы</h2>
+      <div class="faq__list" id="faqList"></div>
     </section>
   </main>
 
@@ -222,8 +289,8 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/config.js?v=4"></script>
-  <script src="js/menu.js?v=4"></script>
-  <script src="js/app.js?v=4"></script>
+  <script src="js/config.js?v=5"></script>
+  <script src="js/menu.js?v=5"></script>
+  <script src="js/app.js?v=5"></script>
 </body>
 </html>

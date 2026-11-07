@@ -7,7 +7,7 @@
   /* ---------------- i18n ---------------- */
   var T = {
     ru: {
-      cart: "Корзина", heroTitle: "Доставка суши, роллов и пиццы",
+      cart: "Корзина", heroTitle: "Ужин для всей семьи точно к вашему времени",
       heroSub: "Кандыагаш · ежедневно " + CFG.open + "–" + CFG.close,
       toMenu: "Смотреть меню", search: "Поиск: филадельфия, пепперони…",
       nothing: "Ничего не нашли. Попробуйте другое название.",
@@ -22,6 +22,23 @@
       photoNote: "Фото блюд могут немного отличаться от подачи: оформление зависит от упаковки, а ингредиенты и граммовка всегда те же.",
       bizTitle: "Для компаний", bizNote: "Обеды для коллективов, фуршеты и поставки в магазины. Скачайте предложение или напишите нам.",
       bizPdf: "Скачать предложение (PDF)", bizWrite: "Обсудить в WhatsApp", bizChip: "Для компаний", prev: "Назад", next: "Вперёд",
+      heroKicker: "Доставка суши, роллов и пиццы", heroPromise: "минут к названному времени · готовим на открытой кухне",
+      promosTitle: "Акции", faqTitle: "Частые вопросы", faqChip: "Вопросы",
+      stepsTitle: "Корзина → WhatsApp → ужин у двери", stepsNote: "Без регистрации и приложений.",
+      step1t: "Соберите корзину", step1d: "Выберите блюда или комбо на компанию.",
+      step2t: "Назовите время и адрес", step2d: "Пришлите геометку в WhatsApp — курьер не будет звонить.",
+      step3t: "Оплатите счёт и ждите", step3d: "Пришлём счёт Kaspi или Halyk. Привезём ±10 минут к вашему времени.",
+      trustTitle: "Почему нам доверяют семьи", trustNote: "Нам нечего прятать, поэтому кухня открыта.",
+      tr1t: "Видно, как готовят ваш заказ", tr1d: "Открытая кухня и прямые эфиры в TikTok по пятницам и воскресеньям в 19:00 — заказы называем по имени.",
+      tr2t: "Халяль и чистота", tr2d: "Все продукты халяльные. Униформа, перчатки и кепки — это видно в каждом эфире.",
+      tr3t: "Саше есть только у нас", tr3d: "Фирменное блюдо, за которым приходят со всего города.",
+      tr4t: "Хозяин сам на кухне", tr4d: "Азамат лично выходит на смены и отвечает за каждую коробку.",
+      aboutKicker: "О нас", aboutTitle: "Делаем Кандыагаш вкуснее", aboutLead: "каждый день, каждым заказом",
+      aboutP1: "Adele — уютное кафе на Жастык 44. Мы открылись 28 сентября 2022 года и хотим, чтобы за вкусными суши и пиццей не нужно было ехать в Актобе.",
+      aboutP2: "Готовим как для своей семьи: из свежих продуктов, без экономии на начинке. Наше главное правило — «Для своих»: перед тем как отдать заказ, спрашиваем себя, отдали бы мы его своей маме или ребёнку. Если нет — переделываем.",
+      fact1: "с 2022 года", fact2: "2 зала · 25 мест", fact3: "открытая кухня", fact4: "100% халяль",
+      aboutFounders: "Кто за этим стоит", capTeam: "Наша команда",
+      foundersText: "Азамат и Гульнур — основатели Adele. Азамат отвечает за вкус и стандарты качества и сам выходит на смены. Гульнур ведёт закупки и поставщиков — поэтому продукты всегда свежие, а цены честные.",
       yourOrder: "Ваш заказ", cartEmpty: "Корзина пока пустая. Добавьте что-нибудь вкусное из меню.",
       delivery: "Доставка", pickup: "Самовывоз", name: "Имя", phone: "Телефон",
       address: "Адрес доставки", addressPh: "Улица, дом, квартира / подъезд",
@@ -36,7 +53,7 @@
       langBtn: "ҚАЗ", langAria: "Қазақ тіліне ауысу"
     },
     kk: {
-      cart: "Себет", heroTitle: "Суши, ролл және пицца жеткізу",
+      cart: "Себет", heroTitle: "Бүкіл отбасыңызға кешкі ас дәл сіз айтқан уақытқа",
       heroSub: "Қандыағаш · күн сайын " + CFG.open + "–" + CFG.close,
       toMenu: "Мәзірді қарау", search: "Іздеу: филадельфия, пепперони…",
       nothing: "Ештеңе табылмады. Басқа атауды көріңіз.",
@@ -51,6 +68,23 @@
       photoNote: "Тағам суреттері берілуінен сәл өзгеше болуы мүмкін: безендіру қаптамаға байланысты, ал құрамы мен салмағы әрқашан бірдей.",
       bizTitle: "Компанияларға", bizNote: "Ұжымға түскі ас, фуршет және дүкендерге жеткізу. Ұсынысты жүктеп алыңыз немесе бізге жазыңыз.",
       bizPdf: "Ұсынысты жүктеу (PDF)", bizWrite: "WhatsApp-та талқылау", bizChip: "Компанияларға", prev: "Артқа", next: "Алға",
+      heroKicker: "Суши, ролл және пицца жеткізу", heroPromise: "минут дәлдікпен айтқан уақытқа · ашық ас үйде дайындаймыз",
+      promosTitle: "Акциялар", faqTitle: "Жиі қойылатын сұрақтар", faqChip: "Сұрақтар",
+      stepsTitle: "Себет → WhatsApp → кешкі ас есігіңізде", stepsNote: "Тіркелусіз және қосымшасыз.",
+      step1t: "Себетті толтырыңыз", step1d: "Тағамдарды немесе компанияға комбо таңдаңыз.",
+      step2t: "Уақыт пен мекенжайды жазыңыз", step2d: "WhatsApp-қа геолокация жіберіңіз — курьер қоңырау шалмайды.",
+      step3t: "Шотты төлеп, күтіңіз", step3d: "Kaspi немесе Halyk шотын жібереміз. Айтқан уақытыңызға ±10 минутта жеткіземіз.",
+      trustTitle: "Отбасылар бізге неге сенеді", trustNote: "Бізде жасыратын ештеңе жоқ, сондықтан ас үй ашық.",
+      tr1t: "Тапсырысыңыздың қалай дайындалатыны көрінеді", tr1d: "Ашық ас үй және жұма мен жексенбі 19:00-де TikTok-тағы тікелей эфирлер — тапсырыстарды атымен атаймыз.",
+      tr2t: "Халал және тазалық", tr2d: "Барлық өнім халал. Форма, қолғап, кепка — мұның бәрі әр эфирде көрінеді.",
+      tr3t: "Саше тек бізде", tr3d: "Бүкіл қаладан іздеп келетін фирмалық тағам.",
+      tr4t: "Иесі өзі ас үйде", tr4d: "Азамат ауысымға өзі шығып, әр қорап үшін жауап береді.",
+      aboutKicker: "Біз туралы", aboutTitle: "Қандыағашты дәмдірек етеміз", aboutLead: "күн сайын, әр тапсырыспен",
+      aboutP1: "Adele — Жастық 44-тегі жайлы кафе. Біз 2022 жылдың 28 қыркүйегінде ашылдық және дәмді суши мен пицца үшін Ақтөбеге барудың қажеті болмасын деп тырысамыз.",
+      aboutP2: "Өз отбасымызға дайындағандай дайындаймыз: балғын өнімдерден, салмасын үнемдемей. Басты ережеміз — «Өзімізге»: тапсырысты берер алдында өзімізден сұраймыз — мұны анама не балама берер ме едім? Жоқ болса — қайта жасаймыз.",
+      fact1: "2022 жылдан бері", fact2: "2 зал · 25 орын", fact3: "ашық ас үй", fact4: "100% халал",
+      aboutFounders: "Мұның артында кім тұр", capTeam: "Біздің команда",
+      foundersText: "Азамат пен Гүлнұр — Adele-дің негізін қалаушылар. Азамат дәм мен сапа стандарттарына жауап береді және ауысымға өзі шығады. Гүлнұр сатып алу мен жеткізушілерді басқарады — сондықтан өнім әрқашан балғын, баға әділ.",
       yourOrder: "Сіздің тапсырысыңыз", cartEmpty: "Себет әзірге бос. Мәзірден дәмді бірдеңе қосыңыз.",
       delivery: "Жеткізу", pickup: "Өзім алып кетемін", name: "Атыңыз", phone: "Телефон",
       address: "Жеткізу мекенжайы", addressPh: "Көше, үй, пәтер / кіреберіс",
@@ -203,6 +237,7 @@
     });
     if ((CFG.business || []).length) chips += '<a class="chip chip--biz" href="#business">' + esc(t("bizChip")) + "</a>";
     if (hasGuestReviews()) chips += '<a class="chip chip--reviews" href="#reviews">' + esc(t("reviewsChip")) + "</a>";
+    if ((CFG.faq || []).length) chips += '<a class="chip chip--biz" href="#faq">' + esc(t("faqChip")) + "</a>";
     menuEl.innerHTML = html;
     catsEl.innerHTML = chips;
     $("#emptySearch").hidden = any;
@@ -496,6 +531,34 @@
     observeReveal();
   }
 
+  /* ---------------- promos ---------------- */
+  function renderPromos() {
+    var today = new Date(Date.now() + 5 * 3600 * 1000).toISOString().slice(0, 10); // дата в Казахстане
+    var list = (CFG.promos || []).filter(function (p) { return !p.until || p.until >= today; });
+    $("#promos").hidden = !list.length;
+    var lang = state.lang;
+    $("#promoList").innerHTML = list.map(function (p) {
+      var href = p.wa ? "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(p.wa) : (p.href || "#menu");
+      return '<article class="promo">' +
+        (p.img ? '<img class="promo__img" src="' + esc(p.img) + '" alt="" loading="lazy" decoding="async">' : "") +
+        '<div class="promo__body"><span class="promo__tag">' + esc(p.tag[lang]) + "</span>" +
+        "<h3>" + esc(p.title[lang]) + "</h3><p>" + esc(p.text[lang]) + "</p>" +
+        '<a class="promo__cta" href="' + esc(href) + '"' + (p.wa ? ' target="_blank" rel="noopener"' : "") + ">" + esc(p.cta[lang]) + " →</a>" +
+        "</div></article>";
+    }).join("");
+  }
+
+  /* ---------------- FAQ ---------------- */
+  function renderFaq() {
+    var list = CFG.faq || [];
+    $("#faq").hidden = !list.length;
+    var lang = state.lang;
+    $("#faqList").innerHTML = list.map(function (f) {
+      return '<details class="faq__item"><summary>' + esc(f.q[lang]) + '<span class="faq__plus" aria-hidden="true"></span></summary>' +
+        "<p>" + esc(f.a[lang]) + "</p></details>";
+    }).join("");
+  }
+
   /* Reviews carousel: one row, arrows scroll by one card */
   function setupCarousel() {
     var list = $("#guestReviews"), prev = $("#rvPrev"), next = $("#rvNext");
@@ -538,7 +601,7 @@
     $$("[data-i18n-ph]").forEach(function (el) { el.placeholder = t(el.getAttribute("data-i18n-ph")); });
     var lb = $("#langBtn"); lb.textContent = t("langBtn"); lb.setAttribute("aria-label", t("langAria"));
     $("#footerCity").textContent = CFG.address ? CFG.address[state.lang] : CFG.city[state.lang];
-    fillInfo(); renderStatus(); renderMenu(); renderCart(); renderBusiness();
+    fillInfo(); renderStatus(); renderMenu(); renderCart(); renderBusiness(); renderPromos(); renderFaq();
   }
   $("#langBtn").addEventListener("click", function () {
     state.lang = state.lang === "ru" ? "kk" : "ru"; save("lang", state.lang); applyLang();
