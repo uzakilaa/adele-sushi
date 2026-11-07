@@ -130,7 +130,7 @@ a { color: inherit; }
 .hero__status.open { color: var(--wa); }
 .hero__status.closed { color: var(--accent); }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 10px; }
-/* Quick actions: address, WhatsApp, call — the first thing a visitor needs */
+/* Quick actions: address, WhatsApp, call - the first thing a visitor needs */
 .quick { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0 0 14px; max-width: 520px; }
 .quick__btn {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
