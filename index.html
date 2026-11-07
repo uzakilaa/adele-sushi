@@ -52,12 +52,23 @@
           <span class="hero__stars" aria-hidden="true">★★★★★</span>
           <span data-i18n="heroReviews">Что говорят гости</span>
         </a>
+        <div class="quick" aria-label="Быстрые действия">
+          <button type="button" class="quick__btn" id="infoOpen">
+            <span class="quick__ico"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>
+            <span data-i18n="qAddress">Адрес и график</span>
+          </button>
+          <a class="quick__btn quick__btn--wa" id="quickWa" href="#" target="_blank" rel="noopener">
+            <span class="quick__ico"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M17.5 14.4c-.3-.15-1.75-.86-2-.96-.28-.1-.48-.15-.68.15-.2.3-.77.96-.95 1.16-.17.2-.35.22-.65.07a8.1 8.1 0 0 1-2.4-1.48 9 9 0 0 1-1.65-2.06c-.17-.3 0-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.62-.93-2.22-.24-.58-.5-.5-.68-.5h-.58a1.1 1.1 0 0 0-.8.37 3.4 3.4 0 0 0-1.05 2.5c0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.5.71.3 1.27.5 1.7.63.72.23 1.37.2 1.88.12.58-.08 1.75-.72 2-1.4.25-.7.25-1.3.18-1.42-.08-.13-.28-.2-.58-.35zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3 .78.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg></span>
+            <span data-i18n="qWrite">Написать в WhatsApp</span>
+          </a>
+          <a class="quick__btn" id="heroCall" href="#">
+            <span class="quick__ico"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg></span>
+            <span data-i18n="qCall">Позвонить</span>
+          </a>
+        </div>
         <div class="hero__ctas">
           <a href="#menu" class="btn btn--primary" data-i18n="toMenu">Смотреть меню</a>
-          <a href="#" class="btn btn--ghost" id="heroCall">
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg>
-            <span id="heroPhone"></span>
-          </a>
+          <a href="#business" class="btn btn--ghost" data-i18n="toBusiness">Для компаний</a>
         </div>
       </div>
       <img class="hero__logo" src="img/logo.jpg" alt="Adele Sushi — пицца, роллы, доставка" width="800" height="800">
@@ -72,13 +83,28 @@
 
     <div id="menu" class="menu container"></div>
     <p class="empty-search container" id="emptySearch" hidden data-i18n="nothing">Ничего не нашли. Попробуйте другое название.</p>
+    <p class="photo-note container" data-i18n="photoNote">Фото блюд могут немного отличаться от подачи: оформление зависит от упаковки, а ингредиенты и граммовка всегда те же.</p>
+
+    <section class="biz container" id="business" hidden>
+      <h2 data-i18n="bizTitle">Для компаний</h2>
+      <p class="biz__note" data-i18n="bizNote">Обеды для коллективов, фуршеты и поставки в магазины. Скачайте предложение или напишите нам.</p>
+      <div class="biz__grid" id="bizGrid"></div>
+    </section>
 
     <section class="reviews container" id="reviews" hidden>
       <div class="reviews__head">
         <h2 data-i18n="reviews">Отзывы гостей</h2>
         <p class="reviews__note" data-i18n="reviewsNote">Настоящие отзывы наших гостей на 2GIS</p>
       </div>
-      <div class="rv-list" id="guestReviews"></div>
+      <div class="rv-wrap">
+        <button type="button" class="rv-arrow rv-arrow--prev" id="rvPrev" aria-label="Назад">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <div class="rv-list" id="guestReviews"></div>
+        <button type="button" class="rv-arrow rv-arrow--next" id="rvNext" aria-label="Вперёд">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
       <div class="reviews__ctas" id="reviewsCtas" hidden>
         <a class="btn btn--primary" id="rvLeave" href="#" target="_blank" rel="noopener" data-i18n="leaveReview">Оставить отзыв в 2GIS</a>
         <a class="btn btn--ghost" id="rvAll" href="#" target="_blank" rel="noopener" data-i18n="allReviews">Все отзывы</a>
@@ -155,19 +181,6 @@
           <input name="address" type="text" autocomplete="street-address" data-i18n-ph="addressPh" placeholder="Улица, дом, квартира / подъезд">
         </label>
 
-        <fieldset class="field">
-          <legend data-i18n="payment">Оплата</legend>
-          <div class="seg">
-            <label><input type="radio" name="pay" value="cash" checked><span data-i18n="cash">Наличные</span></label>
-            <label><input type="radio" name="pay" value="kaspi"><span data-i18n="kaspi">Kaspi перевод</span></label>
-          </div>
-        </fieldset>
-
-        <label class="field" id="changeField">
-          <span data-i18n="change">Сдача с суммы</span>
-          <input name="change" type="text" inputmode="numeric" data-i18n-ph="changePh" placeholder="Например, 10 000">
-        </label>
-
         <label class="field">
           <span data-i18n="comment">Комментарий</span>
           <textarea name="comment" rows="2" maxlength="300" data-i18n-ph="commentPh" placeholder="Без лука, приборы на 3 человек…"></textarea>
@@ -186,6 +199,26 @@
       </button>
     </div>
   </aside>
+
+  <!-- Адрес и график -->
+  <dialog class="info" id="infoDlg" aria-labelledby="infoTitle">
+    <div class="info__head">
+      <h2 id="infoTitle" data-i18n="qAddress">Адрес и график</h2>
+      <button class="icon-btn" id="infoClose" type="button" aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <dl class="info__list">
+      <div><dt data-i18n="iAddress">Адрес</dt><dd id="infoAddr"></dd></div>
+      <div><dt data-i18n="iHours">Часы работы</dt><dd id="infoHours"></dd></div>
+      <div><dt data-i18n="iDelivery">Доставка</dt><dd data-i18n="iDeliveryText">По всему Кандыагашу. Стоимость зависит от района — уточнит оператор.</dd></div>
+      <div><dt data-i18n="iPickup">Самовывоз</dt><dd data-i18n="iPickupText">Заберите заказ сами по адресу кафе — напишем, когда будет готов.</dd></div>
+    </dl>
+    <div class="info__ctas">
+      <a class="btn btn--primary" id="infoMap" href="#" target="_blank" rel="noopener" data-i18n="iMap">Открыть на карте 2GIS</a>
+      <a class="btn btn--ghost" id="infoCall" href="#"></a>
+    </div>
+  </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

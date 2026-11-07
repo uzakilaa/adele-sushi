@@ -14,13 +14,21 @@
       reviews: "Отзывы гостей", tagline: "Пицца · Роллы · Доставка", workDaily: "Работаем ежедневно",
       reviewsNote: "Настоящие отзывы наших гостей на 2GIS", leaveReview: "Оставить отзыв в 2GIS",
       allReviews: "Все отзывы", heroReviews: "Что говорят гости", reviewsChip: "★ Отзывы",
+      qAddress: "Адрес и график", qWrite: "Написать в WhatsApp", qCall: "Позвонить", toBusiness: "Для компаний",
+      iAddress: "Адрес", iHours: "Часы работы", iDelivery: "Доставка", iPickup: "Самовывоз",
+      iDeliveryText: "По всему Кандыагашу. Стоимость зависит от района — уточнит оператор.",
+      iPickupText: "Заберите заказ сами по адресу кафе — напишем, когда будет готов.",
+      iMap: "Открыть на карте 2GIS", iDaily: "Ежедневно", waHello: "Здравствуйте! Хочу сделать заказ.",
+      photoNote: "Фото блюд могут немного отличаться от подачи: оформление зависит от упаковки, а ингредиенты и граммовка всегда те же.",
+      bizTitle: "Для компаний", bizNote: "Обеды для коллективов, фуршеты и поставки в магазины. Скачайте предложение или напишите нам.",
+      bizPdf: "Скачать предложение (PDF)", bizWrite: "Обсудить в WhatsApp", bizChip: "Для компаний", prev: "Назад", next: "Вперёд",
       yourOrder: "Ваш заказ", cartEmpty: "Корзина пока пустая. Добавьте что-нибудь вкусное из меню.",
       delivery: "Доставка", pickup: "Самовывоз", name: "Имя", phone: "Телефон",
       address: "Адрес доставки", addressPh: "Улица, дом, квартира / подъезд",
       payment: "Оплата", cash: "Наличные", kaspi: "Kaspi перевод",
       change: "Сдача с суммы", changePh: "Например, 10 000",
       comment: "Комментарий", commentPh: "Без лука, приборы на 3 человек…",
-      total: "Итого", deliveryNote: "Стоимость доставки и время уточнит оператор в WhatsApp.",
+      total: "Итого", deliveryNote: "Оператор в WhatsApp уточнит стоимость доставки и время и пришлёт счёт на оплату Kaspi или Halyk.",
       sendWa: "Оформить в WhatsApp", add: "В корзину", added: "Добавлено в корзину",
       open: "Открыто до " + CFG.close, closed: "Сейчас закрыто · принимаем заказы с " + CFG.open,
       errName: "Укажите имя", errPhone: "Укажите номер телефона полностью", errAddr: "Укажите адрес доставки",
@@ -35,13 +43,21 @@
       reviews: "Қонақтардың пікірлері", tagline: "Пицца · Роллдар · Жеткізу", workDaily: "Күн сайын жұмыс істейміз",
       reviewsNote: "Қонақтарымыздың 2GIS-тегі шынайы пікірлері", leaveReview: "2GIS-те пікір қалдыру",
       allReviews: "Барлық пікірлер", heroReviews: "Қонақтар не дейді", reviewsChip: "★ Пікірлер",
+      qAddress: "Мекенжай мен кесте", qWrite: "WhatsApp-қа жазу", qCall: "Қоңырау шалу", toBusiness: "Компанияларға",
+      iAddress: "Мекенжай", iHours: "Жұмыс уақыты", iDelivery: "Жеткізу", iPickup: "Өзім алып кетемін",
+      iDeliveryText: "Бүкіл Қандыағаш бойынша. Құны ауданға байланысты — оператор нақтылайды.",
+      iPickupText: "Тапсырысты кафеден өзіңіз алып кете аласыз — дайын болғанда жазамыз.",
+      iMap: "2GIS картасынан ашу", iDaily: "Күн сайын", waHello: "Сәлеметсіз бе! Тапсырыс бергім келеді.",
+      photoNote: "Тағам суреттері берілуінен сәл өзгеше болуы мүмкін: безендіру қаптамаға байланысты, ал құрамы мен салмағы әрқашан бірдей.",
+      bizTitle: "Компанияларға", bizNote: "Ұжымға түскі ас, фуршет және дүкендерге жеткізу. Ұсынысты жүктеп алыңыз немесе бізге жазыңыз.",
+      bizPdf: "Ұсынысты жүктеу (PDF)", bizWrite: "WhatsApp-та талқылау", bizChip: "Компанияларға", prev: "Артқа", next: "Алға",
       yourOrder: "Сіздің тапсырысыңыз", cartEmpty: "Себет әзірге бос. Мәзірден дәмді бірдеңе қосыңыз.",
       delivery: "Жеткізу", pickup: "Өзім алып кетемін", name: "Атыңыз", phone: "Телефон",
       address: "Жеткізу мекенжайы", addressPh: "Көше, үй, пәтер / кіреберіс",
       payment: "Төлем", cash: "Қолма-қол", kaspi: "Kaspi аударым",
       change: "Қай сомадан қайтарым", changePh: "Мысалы, 10 000",
       comment: "Түсініктеме", commentPh: "Пиязсыз, 3 адамға құрал…",
-      total: "Барлығы", deliveryNote: "Жеткізу құны мен уақытын оператор WhatsApp-та нақтылайды.",
+      total: "Барлығы", deliveryNote: "Оператор WhatsApp-та жеткізу құны мен уақытын нақтылап, Kaspi немесе Halyk арқылы төлем шотын жібереді.",
       sendWa: "WhatsApp арқылы рәсімдеу", add: "Себетке", added: "Себетке қосылды",
       open: CFG.close + " дейін ашық", closed: "Қазір жабық · тапсырыстар " + CFG.open + "-ден қабылданады",
       errName: "Атыңызды жазыңыз", errPhone: "Телефон нөмірін толық жазыңыз", errAddr: "Жеткізу мекенжайын жазыңыз",
@@ -177,10 +193,12 @@
       var items = cat.items.filter(function (it) { return !it.hidden && matches(it); });
       if (!items.length) return;
       any = true;
-      chips += '<a class="chip" href="#cat-' + cat.id + '" data-cat="' + cat.id + '">' + esc(name(cat)) + "</a>";
+      chips += '<a class="chip" href="#cat-' + cat.id + '" data-cat="' + cat.id + '">' +
+        '<span class="chip__ico" aria-hidden="true">' + (ICONS[cat.icon] || "") + "</span>" + esc(name(cat)) + "</a>";
       html += '<section class="cat" id="cat-' + cat.id + '"><h2 class="cat__title">' + esc(name(cat)) + "</h2>" +
         gridsHtml(items, cat.icon) + "</section>";
     });
+    if ((CFG.business || []).length) chips += '<a class="chip chip--biz" href="#business">' + esc(t("bizChip")) + "</a>";
     if (hasGuestReviews()) chips += '<a class="chip chip--reviews" href="#reviews">' + esc(t("reviewsChip")) + "</a>";
     menuEl.innerHTML = html;
     catsEl.innerHTML = chips;
@@ -242,11 +260,13 @@
         '<div class="line__price">' + money(l.price * l.qty) + "</div>" +
         '<div class="qty"><button type="button" data-act="dec" aria-label="−">−</button><span>' + l.qty + '</span><button type="button" data-act="inc" aria-label="+">+</button></div>' +
         "</div>";
-    }).join("") + (count ? '<p style="text-align:right;margin:10px 0 0"><button type="button" id="clearCart" style="border:0;background:none;color:var(--muted);text-decoration:underline;font-size:13px;padding:4px">' + esc(t("clear")) + "</button></p>" : "");
+    }).join("") + (count ? '<p class="clear-row"><button type="button" class="clear-btn" id="clearCart">' +
+      '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg>' +
+      esc(t("clear")) + "</button></p>" : "");
   }
 
   $("#cartItems").addEventListener("click", function (e) {
-    if (e.target.id === "clearCart") {
+    if (e.target.closest("#clearCart")) {
       var ids = Object.keys(state.cart).map(function (k) { return k.split("|")[0]; });
       state.cart = {}; save("cart", state.cart); ids.forEach(refreshCard); renderCart(); return;
     }
@@ -284,7 +304,6 @@
   function syncForm() {
     var isDelivery = form.elements.type.value === "delivery";
     $("#addrField").hidden = !isDelivery;
-    $("#changeField").hidden = form.elements.pay.value !== "cash";
   }
   form.addEventListener("change", syncForm);
 
@@ -325,7 +344,6 @@
     if (data.type === "delivery") msg.push("Адрес: " + data.address);
     msg.push("Имя: " + data.name);
     msg.push("Телефон: " + data.phone);
-    msg.push("Оплата: " + (data.pay === "kaspi" ? "Kaspi перевод" : "Наличные" + (data.change ? ", сдача с " + data.change : "")));
     if (data.comment) msg.push("Комментарий: " + data.comment);
     if (state.lang === "kk") msg.push("Язык клиента: казахский");
     return msg.join("\n");
@@ -336,8 +354,7 @@
     var el = form.elements, err = null, bad = null;
     var data = {
       type: el.type.value, name: el.name.value.trim(), phone: el.phone.value.trim(),
-      address: el.address.value.trim(), pay: el.pay.value,
-      change: el.change.value.trim(), comment: el.comment.value.trim()
+      address: el.address.value.trim(), comment: el.comment.value.trim()
     };
     $$(".invalid", form).forEach(function (x) { x.classList.remove("invalid"); });
     if (!data.name) { err = t("errName"); bad = el.name; }
@@ -428,6 +445,58 @@
       }).join("");
     }
     $("#reviews").hidden = false;
+    if (guests.length) setupCarousel(); // после показа раздела, иначе ширина ленты = 0
+  }
+
+  /* ---------------- business offers ---------------- */
+  function renderBusiness() {
+    var list = CFG.business || [];
+    $("#business").hidden = !list.length;
+    if (!list.length) return;
+    var lang = state.lang, phone = CFG.b2bWhatsapp || CFG.whatsapp;
+    $("#bizGrid").innerHTML = list.map(function (b) {
+      var wa = "https://wa.me/" + phone + "?text=" + encodeURIComponent(b.wa || "");
+      return '<article class="biz-card">' +
+        '<div class="biz-card__media"><img src="' + esc(b.img) + '" alt="" loading="lazy" decoding="async">' +
+          '<span class="biz-card__tag">' + esc(b.title[lang]) + "</span></div>" +
+        '<div class="biz-card__body">' +
+          '<h3 class="biz-card__lead">' + esc(b.lead[lang]) + "</h3>" +
+          '<p class="biz-card__text">' + esc(b.text[lang]) + "</p>" +
+          '<div class="biz-card__ctas">' +
+            '<a class="btn btn--primary" href="' + esc(b.pdf) + '" target="_blank" rel="noopener" download>' +
+              '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14"/></svg>' +
+              esc(t("bizPdf")) + "</a>" +
+            '<a class="btn btn--ghost" href="' + esc(wa) + '" target="_blank" rel="noopener">' + esc(t("bizWrite")) + "</a>" +
+          "</div></div></article>";
+    }).join("");
+  }
+
+  /* Reviews carousel: one row, arrows scroll by one card */
+  function setupCarousel() {
+    var list = $("#guestReviews"), prev = $("#rvPrev"), next = $("#rvNext");
+    function step() {
+      var card = list.querySelector(".rv");
+      return card ? card.getBoundingClientRect().width + 12 : list.clientWidth;
+    }
+    function update() {
+      var max = list.scrollWidth - list.clientWidth - 2;
+      prev.disabled = list.scrollLeft <= 2;
+      next.disabled = list.scrollLeft >= max;
+    }
+    function go(dir) {
+      var from = list.scrollLeft, target = from + dir * step();
+      list.scrollTo({ left: target, behavior: "smooth" });
+      // если браузер не анимирует прокрутку — сдвигаем сразу
+      setTimeout(function () {
+        if (Math.abs(list.scrollLeft - from) < 2) { list.style.scrollBehavior = "auto"; list.scrollLeft = target; list.style.scrollBehavior = ""; update(); }
+      }, 450);
+    }
+    prev.addEventListener("click", function () { go(-1); });
+    next.addEventListener("click", function () { go(1); });
+    list.addEventListener("scroll", function () { window.requestAnimationFrame(update); }, { passive: true });
+    window.addEventListener("resize", update);
+    window.addEventListener("load", update);
+    update();
   }
 
   /* ---------------- toast ---------------- */
@@ -443,15 +512,31 @@
     $$("[data-i18n]").forEach(function (el) { el.textContent = t(el.getAttribute("data-i18n")); });
     $$("[data-i18n-ph]").forEach(function (el) { el.placeholder = t(el.getAttribute("data-i18n-ph")); });
     var lb = $("#langBtn"); lb.textContent = t("langBtn"); lb.setAttribute("aria-label", t("langAria"));
-    $("#footerCity").textContent = CFG.city[state.lang];
-    renderStatus(); renderMenu(); renderCart();
+    $("#footerCity").textContent = CFG.address ? CFG.address[state.lang] : CFG.city[state.lang];
+    fillInfo(); renderStatus(); renderMenu(); renderCart(); renderBusiness();
   }
   $("#langBtn").addEventListener("click", function () {
     state.lang = state.lang === "ru" ? "kk" : "ru"; save("lang", state.lang); applyLang();
   });
 
+  /* ---------------- address & hours dialog ---------------- */
+  var infoDlg = $("#infoDlg");
+  function fillInfo() {
+    $("#infoAddr").textContent = CFG.address ? CFG.address[state.lang] : CFG.city[state.lang];
+    $("#infoHours").textContent = t("iDaily") + ", " + CFG.open + "–" + CFG.close;
+    $("#quickWa").href = "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(t("waHello"));
+  }
+  $("#infoOpen").addEventListener("click", function () {
+    fillInfo();
+    if (infoDlg.showModal) infoDlg.showModal(); else infoDlg.setAttribute("open", "");
+  });
+  $("#infoClose").addEventListener("click", function () { infoDlg.close ? infoDlg.close() : infoDlg.removeAttribute("open"); });
+  infoDlg.addEventListener("click", function (e) { if (e.target === infoDlg && infoDlg.close) infoDlg.close(); });
+  $("#infoMap").href = CFG.map || CFG.twogis || "#";
+  $("#infoCall").textContent = CFG.phoneLabel; $("#infoCall").href = "tel:" + CFG.phone;
+
   // контакты из конфига
-  $("#heroPhone").textContent = CFG.phoneLabel; $("#heroCall").href = "tel:" + CFG.phone;
+  $("#heroCall").href = "tel:" + CFG.phone;
   $("#footerPhone").textContent = CFG.phoneLabel; $("#footerPhone").href = "tel:" + CFG.phone;
   $("#footerHours").textContent = CFG.open + "–" + CFG.close;
   $("#igLink").href = CFG.instagram; $("#ttLink").href = CFG.tiktok;
