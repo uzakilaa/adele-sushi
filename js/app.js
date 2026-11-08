@@ -839,5 +839,12 @@
   syncForm();
   applyLang();
   renderReviews();
-  setInterval(renderStatus, 60000);
+  // каждую минуту обновляем «Открыто/Закрыто» и статус бизнес-ланчей
+  function updateLunchStatus() {
+    var el = document.querySelector(".lunch-head__status"); if (!el) return;
+    var open = lunchOpenNow();
+    el.classList.toggle("is-open", open);
+    el.textContent = open ? t("lunchNow") : t("lunchLater");
+  }
+  setInterval(function () { renderStatus(); updateLunchStatus(); }, 60000);
 })();

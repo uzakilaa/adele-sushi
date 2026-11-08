@@ -131,7 +131,7 @@ window.MENU = [
           { l: "7 шт", lk: "7 дана", p: 2200 },
           { l: "14 шт", lk: "14 дана", p: 4100 }
         ] },
-      { id: "f-fries", img: "img/menu/f-fries.webp", n: "Фри", p: 900, d: "200 г", dk: "200 г" },
+      { id: "f-fries", img: "img/menu/f-fries.webp", n: "Фри", p: 900, d: "700 г", dk: "700 г" },
       { id: "f-nug", img: "img/menu/f-nug.webp", n: "Наггетсы 10 шт", nk: "Наггетс 10 дана", p: 1500 },
       { id: "f-shrimp", img: "img/menu/f-shrimp.webp", n: "Креветки в кляре 7 шт", nk: "Кляредегі асшаян 7 дана", p: 2100,
         d: "жареные креветки в кляре, соус унаги и чили, долька лимона",
