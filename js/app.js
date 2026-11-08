@@ -267,7 +267,7 @@
       any = true;
       chips += '<a class="chip" href="#cat-' + cat.id + '" data-cat="' + cat.id + '">' +
         (cat.thumb
-          ? '<span class="chip__ico chip__ico--photo" aria-hidden="true"><img src="' + esc(cat.thumb) + '" alt="" width="32" height="32" decoding="async"></span>'
+          ? '<span class="chip__ico chip__ico--photo" aria-hidden="true"><img src="' + esc(cat.thumb) + '" alt="" width="32" height="32"></span>'
           : '<span class="chip__ico" aria-hidden="true">' + (ICONS[cat.icon] || "") + "</span>") +
         esc(name(cat)) + "</a>";
       var note = state.lang === "kk" && cat.notek ? cat.notek : cat.note;
