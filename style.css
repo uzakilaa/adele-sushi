@@ -973,3 +973,5 @@ html, body { overflow-x: clip; }
 .lmodal__ok { width: 100%; height: 50px; background: #fff; color: var(--graphite); }
 .lmodal__ok:hover { background: #f1ebe5; }
 .lmodal__menu { display: inline-block; margin-top: 12px; color: #e8cdb9; font-size: 14px; font-weight: 600; }
+
+.footer__alt { margin: 0 !important; font-size: 12.5px; color: #9d918a; }
