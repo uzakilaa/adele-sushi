@@ -26,6 +26,11 @@
       promosTitle: "Акции", faqTitle: "Частые вопросы", faqChip: "Вопросы",
       lunchTitle: "Бизнес-ланчи", lunchSub: "Выгодные наборы на обед: экономия до 2 350 ₸.", lunchOnly: "Только по будням",
       moreVariants: "ещё варианты", inCart: "Уже в корзине",
+      lunchLockedBtn: "Пн-чт 11:00-16:00", lunchLockedToast: "Бизнес-ланчи можно заказать пн-чт с 11:00 до 16:00",
+      lunchModalTitle: "Бизнес-ланчи сейчас недоступны", lunchModalText: "Выгодные наборы на обед можно заказать с понедельника по четверг, с 11:00 до 16:00.",
+      lunchNextToday: "Сегодня с 11:00", lunchNextTomorrow: "Завтра с 11:00", lunchNextMonday: "В понедельник с 11:00",
+      lunchModalOk: "Понятно", lunchModalMenu: "Выбрать из меню",
+      lunchLockedCart: "Бизнес-ланчи доступны только пн-чт с 11:00 до 16:00. Уберите их из корзины, чтобы оформить заказ.",
       sWaTitle: "Пишите в WhatsApp", sWaFast: "Отвечаем за 5 минут, даже в час пик", sWaHow: "Можно прислать геометку, и курьер не будет звонить",
       sCallTitle: "Позвоните нам", liveText: "Смотрите, как готовят ваш заказ", fContacts: "Контакты", fSocial: "Мы в соцсетях",
       lunchNow: "Доступно сейчас", lunchLater: "Сейчас недоступно, ждём вас в пн-чт", save: "Выгода",
@@ -79,6 +84,11 @@
       promosTitle: "Акциялар", faqTitle: "Жиі қойылатын сұрақтар", faqChip: "Сұрақтар",
       lunchTitle: "Бизнес-ланчтар", lunchSub: "Түскі асқа тиімді жиынтықтар: 2 350 ₸-ге дейін үнем.", lunchOnly: "Тек жұмыс күндері",
       moreVariants: "басқа нұсқалар", inCart: "Себетте бар",
+      lunchLockedBtn: "Дс-Бс 11:00-16:00", lunchLockedToast: "Бизнес-ланчқа Дс-Бс күндері 11:00-ден 16:00-ге дейін тапсырыс беруге болады",
+      lunchModalTitle: "Бизнес-ланчтар қазір қолжетімсіз", lunchModalText: "Түскі асқа арналған тиімді жиынтықтарға дүйсенбіден бейсенбіге дейін, 11:00-ден 16:00-ге дейін тапсырыс беруге болады.",
+      lunchNextToday: "Бүгін 11:00-ден бастап", lunchNextTomorrow: "Ертең 11:00-ден бастап", lunchNextMonday: "Дүйсенбіде 11:00-ден бастап",
+      lunchModalOk: "Түсінікті", lunchModalMenu: "Мәзірден таңдау",
+      lunchLockedCart: "Бизнес-ланчтар тек Дс-Бс күндері 11:00-ден 16:00-ге дейін қолжетімді. Тапсырыс беру үшін оларды себеттен алып тастаңыз.",
       sWaTitle: "WhatsApp-қа жазыңыз", sWaFast: "5 минутта жауап береміз, қарбалас уақытта да", sWaHow: "Геолокация жіберсеңіз, курьер қоңырау шалмайды",
       sCallTitle: "Бізге қоңырау шалыңыз", liveText: "Тапсырысыңыздың қалай дайындалатынын көріңіз", fContacts: "Байланыс", fSocial: "Біз әлеуметтік желілерде",
       lunchNow: "Қазір қолжетімді", lunchLater: "Қазір қолжетімсіз, Дс-Бс күндері күтеміз", save: "Үнем",
@@ -180,11 +190,19 @@
   /* ---------------- render menu ---------------- */
   var menuEl = $("#menu"), catsEl = $("#catsInner");
 
+  // Бизнес-ланчи можно заказать только пн-чт 11:00-16:00
+  function isLunch(it) { return it && it._cat && it._cat.id === "lunch"; }
+  function lunchLocked(it) { return isLunch(it) && !lunchOpenNow(); }
+
   function cardFootHtml(it) {
     var vi = it.v ? (state.sel[it.id] || 0) : null;
     var price = it.v ? it.v[vi].p : it.p;
     var q = state.cart[keyOf(it.id, vi)] || 0;
-    var ctrl = q > 0
+    var ctrl = lunchLocked(it)
+      ? '<button type="button" class="add-btn add-btn--locked" data-act="locked">' +
+        '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>' +
+        esc(t("lunchLockedBtn")) + "</button>"
+      : q > 0
       ? '<div class="qty"><button type="button" data-act="dec" aria-label="−">−</button><span>' + q + '</span><button type="button" data-act="inc" aria-label="+">+</button></div>'
       : '<button type="button" class="add-btn" data-act="inc" aria-label="' + esc(t("add")) + '">+<span class="add-btn__text"> ' + esc(t("add")) + '</span></button>';
     var old = !it.v && it.old > price ? '<s class="price-old">' + money(it.old) + "</s>" : "";
@@ -316,6 +334,7 @@
     var card = e.target.closest(".card"); if (!card) return;
     var id = card.getAttribute("data-id"), it = ITEMS[id];
     var act = e.target.closest("[data-act]");
+    if (act && act.getAttribute("data-act") === "locked") { openLunchInfo(); return; }
     if (act) {
       var k = keyOf(id, it.v ? (state.sel[id] || 0) : null);
       changeQty(k, act.getAttribute("data-act") === "inc" ? 1 : -1, true);
@@ -342,7 +361,10 @@
     }).join("") : "";
     $("#dishQty").textContent = dish.qty;
     $("#dishMinus").disabled = dish.qty <= 1;
-    $("#dishAddLabel").textContent = t("add") + " · " + money(price * dish.qty);
+    var locked = lunchLocked(it);
+    $("#dishAdd").classList.toggle("is-locked", locked); $("#dishPlus").disabled = locked;
+    if (locked) $("#dishMinus").disabled = true;
+    $("#dishAddLabel").textContent = locked ? t("lunchLockedBtn") : t("add") + " · " + money(price * dish.qty);
     var inCart = state.cart[keyOf(dish.id, dish.vi)] || 0;
     $("#dishInCart").hidden = !inCart; if (inCart) $("#dishInCart").textContent = t("inCart") + ": " + inCart;
   }
@@ -373,12 +395,40 @@
   $("#dishPlus").addEventListener("click", function () { if (dish.qty < 99) { dish.qty++; renderDish(); } });
   $("#dishAdd").addEventListener("click", function () {
     var id = dish.id, it = ITEMS[id], k = keyOf(id, dish.vi), q = dish.qty;
+    if (lunchLocked(it)) { closeDish(); openLunchInfo(); return; }
     if (it.v) state.sel[id] = dish.vi;
     state.cart[k] = Math.min((state.cart[k] || 0) + q, 99);
     save("cart", state.cart);
     closeDish(); refreshCard(id); renderCart(); toast(t("added"));
     var b = $("#cartBtn"); b.classList.remove("bump"); void b.offsetWidth; b.classList.add("bump");
   });
+
+  /* ---------------- "lunch not available" popup ---------------- */
+  function lunchNextText() {
+    var kz = new Date(Date.now() + 5 * 3600 * 1000);
+    var day = kz.getUTCDay(), min = kz.getUTCHours() * 60 + kz.getUTCMinutes();
+    if (day >= 1 && day <= 4 && min < 11 * 60) return t("lunchNextToday");
+    if (day >= 1 && day <= 3 && min >= 16 * 60) return t("lunchNextTomorrow");
+    return t("lunchNextMonday");
+  }
+  var lunchModalFocus = null;
+  function openLunchInfo() {
+    $("#lunchModalArt").innerHTML = LUNCH_CLOCK;
+    $("#lunchModalNext").textContent = lunchNextText();
+    lunchModalFocus = document.activeElement;
+    $("#lunchModal").hidden = false;
+    requestAnimationFrame(function () { $("#lunchModal").classList.add("is-open"); });
+    setTimeout(function () { $("#lunchModalOk").focus(); }, 60);
+  }
+  function closeLunchInfo() {
+    $("#lunchModal").classList.remove("is-open");
+    setTimeout(function () { $("#lunchModal").hidden = true; }, 220);
+    if (lunchModalFocus) lunchModalFocus.focus();
+  }
+  $("#lunchModalOk").addEventListener("click", closeLunchInfo);
+  $("#lunchModalMenu").addEventListener("click", closeLunchInfo);
+  $("#lunchModal").addEventListener("click", function (e) { if (e.target === $("#lunchModal")) closeLunchInfo(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !$("#lunchModal").hidden) closeLunchInfo(); });
 
   /* ---------------- cart ---------------- */
   function cartLines() {
@@ -391,6 +441,7 @@
   function cartCount() { return cartLines().reduce(function (s, l) { return s + l.qty; }, 0); }
 
   function changeQty(k, delta, fromMenu) {
+    if (delta > 0 && lunchLocked(ITEMS[k.split("|")[0]])) { openLunchInfo(); return; }
     var q = (state.cart[k] || 0) + delta;
     if (q <= 0) delete state.cart[k]; else state.cart[k] = Math.min(q, 99);
     save("cart", state.cart);
@@ -513,6 +564,14 @@
       address: el.address.value.trim(), comment: el.comment.value.trim()
     };
     $$(".invalid", form).forEach(function (x) { x.classList.remove("invalid"); });
+    var lunchInCart = cartLines().some(function (l) { return lunchLocked(l.item); });
+    if (lunchInCart) {
+      var ee = $("#formError"); ee.textContent = t("lunchLockedCart"); ee.hidden = false;
+      $$("#cartItems .line").forEach(function (ln) {
+        var r = parseKey(ln.getAttribute("data-key")); ln.classList.toggle("line--locked", !!(r && lunchLocked(r.item)));
+      });
+      return;
+    }
     if (!data.name) { err = t("errName"); bad = el.name; }
     else if (data.phone.replace(/\D/g, "").length !== 11) { err = t("errPhone"); bad = el.phone; }
     else if (data.type === "delivery" && data.address.length < 3) { err = t("errAddr"); bad = el.address; }
@@ -853,6 +912,8 @@
     var open = lunchOpenNow();
     el.classList.toggle("is-open", open);
     el.textContent = open ? t("lunchNow") : t("lunchLater");
+    // обновляем кнопки ланчей, когда время наступило или закончилось
+    MENU.forEach(function (c) { if (c.id === "lunch") c.items.forEach(function (it) { refreshCard(it.id); }); });
   }
   setInterval(function () { renderStatus(); updateLunchStatus(); }, 60000);
 })();

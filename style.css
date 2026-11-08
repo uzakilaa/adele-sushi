@@ -938,3 +938,38 @@ html, body { overflow-x: clip; }
 .lunch-head__time small { font-size: 18px; color: #fff; }
 .lunch-head__status { border: 1.5px solid rgba(255, 255, 255, .14); }
 .lunch-head__status.is-open { border-color: rgba(52, 208, 122, .5); background: rgba(52, 208, 122, .12); }
+
+/* Business lunch outside Mon-Thu 11-16: locked button and popup */
+.add-btn--locked {
+  width: 100%; height: 40px; gap: 6px; border-radius: 12px;
+  background: #ece6dd; color: #6f655c; font-size: 13px; font-weight: 700; white-space: nowrap;
+}
+.add-btn--locked:hover { background: #e3dbd0; }
+.dish__add.is-locked { background: #ece6dd; color: #6f655c; }
+.line--locked { background: #fff1ee; box-shadow: inset 3px 0 0 var(--red); padding-left: 10px; }
+.lmodal {
+  position: fixed; inset: 0; z-index: 80; display: flex; align-items: center; justify-content: center; padding: 20px;
+  background: rgba(10, 8, 7, .6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  opacity: 0; transition: opacity .2s ease;
+}
+.lmodal.is-open { opacity: 1; }
+.lmodal__box {
+  width: min(360px, 100%); padding: 26px 22px 20px; border-radius: 24px; text-align: center; color: #fff;
+  border: 2px solid var(--red);
+  background: radial-gradient(90% 60% at 50% 0%, rgba(216, 64, 44, .45), transparent 70%), linear-gradient(180deg, #2b2320 0%, #141110 100%);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, .45);
+  transform: translateY(14px) scale(.96); transition: transform .28s cubic-bezier(.34, 1.56, .64, 1);
+}
+.lmodal.is-open .lmodal__box { transform: none; }
+.lmodal__art { width: 92px; height: 92px; margin: 0 auto 10px; }
+.lmodal__art svg { width: 100%; height: 100%; filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .5)); animation: clock-tilt 3s ease-in-out infinite; }
+.lmodal__title { margin: 0 0 8px; font-size: 21px; font-weight: 700; line-height: 1.2; }
+.lmodal__text { margin: 0 0 12px; color: #d9cfc8; font-size: 14.5px; line-height: 1.45; }
+.lmodal__next {
+  display: inline-flex; align-items: center; gap: 8px; margin: 0 0 16px; padding: 7px 14px; border-radius: 999px;
+  background: rgba(255, 255, 255, .1); font-weight: 700; font-size: 14px;
+}
+.lmodal__dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; }
+.lmodal__ok { width: 100%; height: 50px; background: #fff; color: var(--graphite); }
+.lmodal__ok:hover { background: #f1ebe5; }
+.lmodal__menu { display: inline-block; margin-top: 12px; color: #e8cdb9; font-size: 14px; font-weight: 600; }
