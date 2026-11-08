@@ -624,12 +624,13 @@
     var lang = state.lang;
     $("#promoList").innerHTML = list.map(function (p) {
       var href = p.wa ? "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(p.wa) : (p.href || "#menu");
-      return '<article class="promo">' +
-        (p.img ? '<img class="promo__img" src="' + esc(p.img) + '" alt="" loading="lazy" decoding="async">' : "") +
-        '<div class="promo__body"><span class="promo__tag">' + esc(p.tag[lang]) + "</span>" +
-        "<h3>" + esc(p.title[lang]) + "</h3><p>" + esc(p.text[lang]) + "</p>" +
-        '<a class="promo__cta" href="' + esc(href) + '"' + (p.wa ? ' target="_blank" rel="noopener"' : "") + ">" + esc(p.cta[lang]) + " →</a>" +
-        "</div></article>";
+      return '<a class="promo" href="' + esc(href) + '"' + (p.wa ? ' target="_blank" rel="noopener"' : "") + ">" +
+        '<div class="promo__media">' +
+          (p.img ? '<img class="promo__img" src="' + esc(p.img) + '" alt="" loading="lazy" decoding="async">' : "") +
+          '<span class="promo__tag">' + esc(p.tag[lang]) + "</span></div>" +
+        '<div class="promo__body"><h3>' + esc(p.title[lang]) + "</h3><p>" + esc(p.text[lang]) + "</p>" +
+        '<span class="promo__cta">' + esc(p.cta[lang]) + ' <span aria-hidden="true">→</span></span>' +
+        "</div></a>";
     }).join("");
   }
 

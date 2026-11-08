@@ -749,3 +749,33 @@ html, body { overflow-x: clip; }
 }
 .dish__add { white-space: nowrap; padding: 0 12px; min-width: 0; }
 @media (max-width: 380px) { .dish__qty button { width: 40px; } .dish__add { font-size: 14.5px; } }
+
+/* ---------- Promo cards v2: photo on top, text below ---------- */
+.promos__list { grid-auto-columns: 78%; gap: 12px; }
+.promo {
+  display: flex; flex-direction: column; padding: 0; gap: 0; overflow: hidden; text-decoration: none; color: var(--ink);
+  background: var(--card); border: 1px solid var(--line); grid-template-columns: none;
+}
+.promo__media { position: relative; aspect-ratio: 16 / 10; background: #fff; overflow: hidden; }
+.promo__img { width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: 0; }
+.promo__tag {
+  position: absolute; left: 10px; top: 10px; align-self: auto;
+  padding: 5px 11px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 12px; font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+}
+.promo__body { padding: 12px 14px 14px; gap: 4px; flex: 1; }
+.promo h3 { font-size: 17px; margin: 0; }
+.promo p { font-size: 13.5px; line-height: 1.4; }
+.promo__cta {
+  align-self: flex-start; margin-top: 8px; padding: 8px 14px; border-radius: 10px;
+  background: var(--accent); color: #fff; font-size: 13.5px; font-weight: 700;
+  transition: background .2s, transform .2s;
+}
+.promo__cta span { display: inline-block; transition: transform .2s; }
+@media (hover: hover) {
+  .promo:hover .promo__cta { background: #b0552f; }
+  .promo:hover .promo__cta span { transform: translateX(3px); }
+  .promo:hover .promo__img { transform: scale(1.05); }
+}
+@media (min-width: 720px) { .promos__list { grid-auto-columns: calc((100% - 12px) / 2); } }
+@media (min-width: 1000px) { .promos__list { grid-auto-columns: calc((100% - 24px) / 3); } }
