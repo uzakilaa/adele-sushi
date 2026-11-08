@@ -233,13 +233,21 @@
     var day = kz.getUTCDay(), min = kz.getUTCHours() * 60 + kz.getUTCMinutes();
     return day >= 1 && day <= 4 && min >= 11 * 60 && min < 16 * 60;
   }
+  // Объёмные часы в стиле карточек «Адрес и график»
+  var LUNCH_CLOCK = '<svg viewBox="0 0 64 64" aria-hidden="true"><defs>' +
+    '<radialGradient id="lcRim" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#ff8a6b"/><stop offset=".5" stop-color="#e2412b"/><stop offset="1" stop-color="#8e1c12"/></radialGradient>' +
+    '<radialGradient id="lcFace" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e9e2dc"/></radialGradient></defs>' +
+    '<circle cx="32" cy="33" r="27" fill="url(#lcRim)"/><circle cx="32" cy="33" r="20" fill="url(#lcFace)"/>' +
+    '<g stroke="#b3271a" stroke-width="2" stroke-linecap="round"><path d="M32 16v3M32 47v3M15 33h3M46 33h3"/></g>' +
+    '<path d="M32 33V22M32 33l8 5" stroke="#1d1b19" stroke-width="3.2" stroke-linecap="round"/><circle cx="32" cy="33" r="2.8" fill="#d63a26"/>' +
+    '<path d="M14 22c3-6 8-10 14-11" stroke="#fff" stroke-opacity=".5" stroke-width="3" stroke-linecap="round" fill="none"/></svg>';
   function lunchHeadHtml(note) {
     var open = lunchOpenNow();
     return '<div class="lunch-head">' +
       '<div class="lunch-head__text"><h2 class="cat__title">' + esc(t("lunchTitle")) + "</h2>" +
       "<p>" + esc(t("lunchSub")) + "</p></div>" +
       '<div class="lunch-head__time">' +
-        '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 7v5l3 2"/></svg>' +
+        '<span class="lunch-head__clock">' + LUNCH_CLOCK + "</span>" +
         '<span><b>' + esc(t("lunchOnly")) + "</b><small>" + esc(note || "") + "</small></span></div>" +
       '<span class="lunch-head__status' + (open ? " is-open" : "") + '">' + esc(open ? t("lunchNow") : t("lunchLater")) + "</span>" +
       "</div>";
