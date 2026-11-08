@@ -266,8 +266,8 @@ window.MENU = [
   {
     id: "waffles", n: "Бельгийские вафли", nk: "Бельгиялық вафлилер", icon: "waffle", thumb: "img/menu/w-ice.webp",
     items: [
-      { id: "w-cond", img: "img/menu/w-cond.webp", n: "Вафли с ягодами", nk: "Жидекті вафли", p: 700 },
-      { id: "w-fruit", hidden: true, img: "img/menu/w-fruit.webp", n: "Вафли с фруктами, сгущёнкой и вареньем", nk: "Жеміс, қоюлатылған сүт және тосап қосылған вафли", p: 1200 },
+      { id: "w-cond", img: "img/menu/w-milk.webp", n: "Вафли со сгущёнкой", nk: "Қоюлатылған сүтті вафли", p: 700 },
+      { id: "w-fruit", img: "img/menu/w-cond.webp", n: "Вафли с фруктами", nk: "Жемісті вафли", p: 1200 },
       { id: "w-ice", img: "img/menu/w-ice.webp", n: "Вафли с мороженым", nk: "Балмұздақты вафли", p: 1600 }
     ]
   }
