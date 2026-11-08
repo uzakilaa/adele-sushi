@@ -25,6 +25,7 @@
       heroKicker: "Доставка суши, роллов и пиццы", heroPromise: "минут к названному времени · готовим на открытой кухне",
       promosTitle: "Акции", faqTitle: "Частые вопросы", faqChip: "Вопросы",
       lunchTitle: "Бизнес-ланчи", lunchSub: "Выгодные наборы на обед: экономия до 2 350 ₸.", lunchOnly: "Только по будням",
+      moreVariants: "ещё варианты", inCart: "Уже в корзине",
       lunchNow: "Доступно сейчас", lunchLater: "Сейчас недоступно, ждём вас в пн-чт", save: "Выгода",
       navMenu: "Меню", navPromos: "Акции", navAbout: "О нас", navReviews: "Отзывы", navBiz: "Для компаний", navFaq: "Вопросы",
       ts1: "с 2022 года", ts2: "открытая кухня", ts3: "100% халяль", ts4: "эфиры в TikTok", aboutTrust: "Почему нам доверяют семьи",
@@ -75,6 +76,7 @@
       heroKicker: "Суши, ролл және пицца жеткізу", heroPromise: "минут дәлдікпен айтқан уақытқа · ашық ас үйде дайындаймыз",
       promosTitle: "Акциялар", faqTitle: "Жиі қойылатын сұрақтар", faqChip: "Сұрақтар",
       lunchTitle: "Бизнес-ланчтар", lunchSub: "Түскі асқа тиімді жиынтықтар: 2 350 ₸-ге дейін үнем.", lunchOnly: "Тек жұмыс күндері",
+      moreVariants: "басқа нұсқалар", inCart: "Себетте бар",
       lunchNow: "Қазір қолжетімді", lunchLater: "Қазір қолжетімсіз, Дс-Бс күтеміз", save: "Үнем",
       navMenu: "Мәзір", navPromos: "Акциялар", navAbout: "Біз туралы", navReviews: "Пікірлер", navBiz: "Компанияларға", navFaq: "Сұрақтар",
       ts1: "2022 жылдан бері", ts2: "ашық ас үй", ts3: "100% халал", ts4: "TikTok-та эфир", aboutTrust: "Отбасылар бізге неге сенеді",
@@ -191,21 +193,17 @@
         '<img class="main" src="' + esc(it.img) + '" alt="' + esc(name(it)) + '"' +
           (it.zoom ? ' style="transform:scale(' + Number(it.zoom) + ')"' : "") + ' loading="lazy" decoding="async">'
       : '<div class="ph">' + ICONS[icon || "roll"] + "</div>";
-    var variants = "";
-    if (it.v) {
-      var sel = state.sel[it.id] || 0;
-      variants = '<div class="variants">' + it.v.map(function (v, i) {
-        return '<button type="button" class="variant' + (i === sel ? " is-active" : "") + '" data-vi="' + i + '">' + esc(vlabel(v)) + "</button>";
-      }).join("") + "</div>";
-    }
-    var d = desc(it);
+    // На карточке только фото, название и цена. Описание и варианты открываются в окне блюда.
+    var sel = it.v ? (state.sel[it.id] || 0) : null;
+    var varNote = it.v && it.v.length > 1 ? '<p class="card__var">' + esc(vlabel(it.v[sel])) + " · " + esc(t("moreVariants")) + "</p>" : "";
     return '<article class="card" data-id="' + it.id + '">' +
-      '<div class="card__media' + (it.fit === "contain" ? " is-contain" : "") + (it.shape ? " card__media--" + it.shape : "") + '">' + media +
-        (it.old > it.p ? '<span class="save-badge">' + esc(t("save")) + " " + money(it.old - it.p) + "</span>" : "") + "</div>" +
+      '<button type="button" class="card__open" data-open aria-label="' + esc(name(it)) + '">' +
+        '<div class="card__media' + (it.fit === "contain" ? " is-contain" : "") + (it.shape ? " card__media--" + it.shape : "") + '">' + media +
+          (it.old > it.p ? '<span class="save-badge">' + esc(t("save")) + " " + money(it.old - it.p) + "</span>" : "") + "</div>" +
+      "</button>" +
       '<div class="card__body">' +
-        '<h3 class="card__name">' + esc(name(it)) + "</h3>" +
-        (d ? '<p class="card__desc">' + esc(d) + "</p>" : "") +
-        variants +
+        '<h3 class="card__name" data-open>' + esc(name(it)) + "</h3>" +
+        varNote +
         '<div class="card__foot">' + cardFootHtml(it) + "</div>" +
       "</div></article>";
   }
@@ -296,19 +294,78 @@
   function refreshCard(id) {
     var card = menuEl.querySelector('.card[data-id="' + id + '"]');
     if (!card) return;
-    $(".card__foot", card).innerHTML = cardFootHtml(ITEMS[id]);
-    var sel = state.sel[id] || 0;
-    $$(".variant", card).forEach(function (b, i) { b.classList.toggle("is-active", i === sel); });
+    var it = ITEMS[id];
+    $(".card__foot", card).innerHTML = cardFootHtml(it);
+    var vn = $(".card__var", card);
+    if (vn && it.v) vn.textContent = vlabel(it.v[state.sel[id] || 0]) + " · " + t("moreVariants");
   }
 
   menuEl.addEventListener("click", function (e) {
     var card = e.target.closest(".card"); if (!card) return;
     var id = card.getAttribute("data-id"), it = ITEMS[id];
-    var vb = e.target.closest(".variant");
-    if (vb) { state.sel[id] = Number(vb.getAttribute("data-vi")); refreshCard(id); return; }
-    var act = e.target.closest("[data-act]"); if (!act) return;
-    var k = keyOf(id, it.v ? (state.sel[id] || 0) : null);
-    changeQty(k, act.getAttribute("data-act") === "inc" ? 1 : -1, true);
+    var act = e.target.closest("[data-act]");
+    if (act) {
+      var k = keyOf(id, it.v ? (state.sel[id] || 0) : null);
+      changeQty(k, act.getAttribute("data-act") === "inc" ? 1 : -1, true);
+      return;
+    }
+    if (e.target.closest("[data-open]")) openDish(id);
+  });
+
+  /* ---------------- dish sheet (как в Glovo) ---------------- */
+  var dish = { id: null, vi: null, qty: 1 }, dishLastFocus = null;
+  function dishPrice() { var it = ITEMS[dish.id]; return it.v ? it.v[dish.vi].p : it.p; }
+  function renderDish() {
+    var it = ITEMS[dish.id], d = desc(it), price = dishPrice();
+    $("#dishImg").src = it.img || ""; $("#dishImg").alt = name(it); $("#dishImg").hidden = !it.img;
+    $("#dishName").textContent = name(it);
+    $("#dishDesc").textContent = d; $("#dishDesc").hidden = !d;
+    var old = !it.v && it.old > price ? it.old : 0;
+    $("#dishPrice").innerHTML = money(price) + (old ? ' <s>' + money(old) + "</s>" : "");
+    $("#dishSave").hidden = !old; if (old) $("#dishSave").textContent = t("save") + " " + money(old - price);
+    $("#dishVariants").hidden = !it.v;
+    $("#dishVariants").innerHTML = it.v ? it.v.map(function (v, i) {
+      return '<button type="button" class="dish-var' + (i === dish.vi ? " is-active" : "") + '" data-vi="' + i + '">' +
+        "<span>" + esc(vlabel(v)) + "</span><b>" + money(v.p) + "</b></button>";
+    }).join("") : "";
+    $("#dishQty").textContent = dish.qty;
+    $("#dishMinus").disabled = dish.qty <= 1;
+    $("#dishAddLabel").textContent = t("add") + " · " + money(price * dish.qty);
+    var inCart = state.cart[keyOf(dish.id, dish.vi)] || 0;
+    $("#dishInCart").hidden = !inCart; if (inCart) $("#dishInCart").textContent = t("inCart") + ": " + inCart;
+  }
+  function openDish(id) {
+    var it = ITEMS[id];
+    dish = { id: id, vi: it.v ? (state.sel[id] || 0) : null, qty: 1 };
+    renderDish();
+    dishLastFocus = document.activeElement;
+    $("#dishOverlay").hidden = false; $("#dishSheet").classList.add("is-open");
+    $("#dishSheet").setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden";
+    $("#dishSheet .dish__scroll").scrollTop = 0;
+    setTimeout(function () { $("#dishClose").focus(); }, 50);
+  }
+  function closeDish() {
+    if (!dish.id) return;
+    $("#dishOverlay").hidden = true; $("#dishSheet").classList.remove("is-open");
+    $("#dishSheet").setAttribute("aria-hidden", "true"); document.body.style.overflow = "";
+    dish.id = null; if (dishLastFocus) dishLastFocus.focus();
+  }
+  $("#dishClose").addEventListener("click", closeDish);
+  $("#dishOverlay").addEventListener("click", closeDish);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && dish.id) closeDish(); });
+  $("#dishVariants").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-vi]"); if (!b) return;
+    dish.vi = Number(b.getAttribute("data-vi")); renderDish();
+  });
+  $("#dishMinus").addEventListener("click", function () { if (dish.qty > 1) { dish.qty--; renderDish(); } });
+  $("#dishPlus").addEventListener("click", function () { if (dish.qty < 99) { dish.qty++; renderDish(); } });
+  $("#dishAdd").addEventListener("click", function () {
+    var id = dish.id, it = ITEMS[id], k = keyOf(id, dish.vi), q = dish.qty;
+    if (it.v) state.sel[id] = dish.vi;
+    state.cart[k] = Math.min((state.cart[k] || 0) + q, 99);
+    save("cart", state.cart);
+    closeDish(); refreshCard(id); renderCart(); toast(t("added"));
+    var b = $("#cartBtn"); b.classList.remove("bump"); void b.offsetWidth; b.classList.add("bump");
   });
 
   /* ---------------- cart ---------------- */

@@ -685,3 +685,67 @@ html, body { overflow-x: clip; }
 }
 .add-btn { white-space: nowrap; }
 .cat--lunch .card__foot { flex-wrap: wrap; row-gap: 8px; }
+
+/* ---------- Card: name + price, button on its own row (fits narrow phones) ---------- */
+.card__open { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; text-align: left; }
+.card__name[data-open] { cursor: pointer; }
+.card__name[data-open]:hover { color: var(--accent); }
+.card__var { margin: 0; font-size: 12.5px; color: var(--muted); }
+.card__foot { flex-direction: column; align-items: stretch; gap: 8px; }
+.card__foot .price { flex-direction: row; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.card__foot .add-btn { width: 100%; height: 40px; }
+.card__foot .add-btn__text { display: inline; }
+.card__foot .qty { width: 100%; justify-content: space-between; height: 40px; }
+.card__foot .qty button { width: 44px; height: 40px; }
+.cat--lunch .card__foot { flex-wrap: nowrap; }
+
+/* ---------- Dish sheet ---------- */
+.dish {
+  position: fixed; z-index: 55; left: 0; right: 0; bottom: 0; max-height: 92vh;
+  display: flex; flex-direction: column; background: var(--bg);
+  border-radius: 22px 22px 0 0; box-shadow: 0 -20px 50px rgba(0, 0, 0, .2);
+  transform: translateY(105%); transition: transform .32s cubic-bezier(.22, 1, .36, 1); visibility: hidden;
+}
+.dish.is-open { transform: none; visibility: visible; }
+.dish__close {
+  position: absolute; top: 12px; right: 12px; z-index: 2; width: 40px; height: 40px; border-radius: 50%;
+  border: 0; background: rgba(255, 255, 255, .92); box-shadow: 0 4px 14px rgba(0, 0, 0, .15);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.dish__scroll { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.dish__media { position: relative; aspect-ratio: 1 / 1; max-height: 46vh; width: 100%; background: #fff; border-radius: 22px 22px 0 0; overflow: hidden; }
+.dish__media img { width: 100%; height: 100%; object-fit: contain; }
+.dish__body { padding: 16px 18px 8px; display: grid; gap: 8px; }
+.dish__name { margin: 0; font-family: var(--serif); font-size: 24px; line-height: 1.15; }
+.dish__price { margin: 0; font-size: 20px; font-weight: 700; color: var(--accent); }
+.dish__price s { font-size: 14px; font-weight: 500; color: var(--muted); margin-left: 6px; }
+.dish__desc { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+.dish__vars { display: grid; gap: 8px; margin-top: 4px; }
+.dish-var {
+  display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-radius: 14px;
+  border: 1.5px solid var(--line); background: var(--card); font-size: 15px; font-weight: 600; text-align: left;
+}
+.dish-var b { color: var(--muted); font-weight: 600; }
+.dish-var.is-active { border-color: var(--accent); background: var(--accent-soft); }
+.dish-var.is-active b { color: var(--accent); }
+.dish__incart { margin: 0; font-size: 13px; font-weight: 600; color: var(--wa); }
+.dish__foot {
+  display: flex; gap: 10px; align-items: center; padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line); background: var(--card);
+}
+.dish__qty { display: inline-flex; align-items: center; height: 52px; border-radius: 14px; background: var(--accent-soft); color: #8f3f1f; font-weight: 700; }
+.dish__qty button { width: 46px; height: 52px; border: 0; background: none; font-size: 22px; color: inherit; }
+.dish__qty button:disabled { opacity: .35; cursor: default; }
+.dish__qty span { min-width: 24px; text-align: center; font-size: 17px; }
+.dish__add { flex: 1; height: 52px; font-size: 15.5px; }
+@media (min-width: 720px) {
+  .dish {
+    left: 50%; right: auto; bottom: auto; top: 50%; width: min(520px, calc(100% - 40px)); max-height: 88vh;
+    border-radius: 22px; transform: translate(-50%, -46%) scale(.96); opacity: 0;
+    transition: transform .28s cubic-bezier(.22, 1, .36, 1), opacity .2s ease, visibility .28s;
+  }
+  .dish.is-open { transform: translate(-50%, -50%); opacity: 1; }
+  .dish__foot { border-radius: 0 0 22px 22px; }
+}
+.dish__add { white-space: nowrap; padding: 0 12px; min-width: 0; }
+@media (max-width: 380px) { .dish__qty button { width: 40px; } .dish__add { font-size: 14.5px; } }

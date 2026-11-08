@@ -6,23 +6,24 @@
   <title>Adele Sushi: доставка суши, роллов и пиццы в Кандыагаше</title>
   <meta name="description" content="Adele Sushi: доставка роллов, суши, пиццы и комбо в Кандыагаше. Ежедневно 11:00-23:30. Заказ в пару кликов через WhatsApp.">
   <meta name="theme-color" content="#f4f1ea">
+  <meta name="color-scheme" content="only light">
   <meta property="og:title" content="Adele Sushi: доставка в Кандыагаше">
   <meta property="og:description" content="Роллы, суши, пицца и комбо. Заказ через WhatsApp.">
   <meta property="og:image" content="img/logo.jpg">
   <meta property="og:type" content="website">
-  <link rel="icon" type="image/png" href="img/favicon.png?v=14">
+  <link rel="icon" type="image/png" href="img/favicon.png?v=15">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=PT+Serif:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=14">
+  <link rel="stylesheet" href="style.css?v=15">
 </head>
 <body>
 
   <header class="header">
     <div class="header__inner container">
       <a href="#top" class="brand" aria-label="Adele Sushi">
-        <img src="img/emblem.png?v=14" alt="" class="brand__logo" width="44" height="44">
+        <img src="img/emblem.png?v=15" alt="" class="brand__logo" width="44" height="44">
         <span class="brand__text">
           <span class="brand__name">Adele</span>
           <span class="brand__sub">SUSHI</span>
@@ -84,7 +85,7 @@
           <a href="#business" class="btn btn--ghost" data-i18n="toBusiness">Для компаний</a>
         </div>
       </div>
-      <img class="hero__logo" src="img/logo.jpg?v=14" alt="Adele Sushi: пицца, роллы, доставка" width="800" height="800">
+      <img class="hero__logo" src="img/logo.jpg?v=15" alt="Adele Sushi: пицца, роллы, доставка" width="800" height="800">
     </section>
 
     <ul class="trust-strip container" aria-label="Почему Adele">
@@ -205,7 +206,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <div>
-        <img src="img/emblem.png?v=14" alt="" width="56" height="56" class="footer__logo">
+        <img src="img/emblem.png?v=15" alt="" width="56" height="56" class="footer__logo">
         <p class="footer__brand">Adele Sushi</p>
         <p data-i18n="tagline">Пицца · Роллы · Доставка</p>
       </div>
@@ -289,11 +290,37 @@
     </div>
   </aside>
 
+  <!-- Окно блюда -->
+  <div class="overlay" id="dishOverlay" hidden></div>
+  <section class="dish" id="dishSheet" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="dishName">
+    <button class="dish__close" id="dishClose" type="button" aria-label="Закрыть">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <div class="dish__scroll">
+      <div class="dish__media"><img id="dishImg" src="" alt=""><span class="save-badge" id="dishSave" hidden></span></div>
+      <div class="dish__body">
+        <h2 class="dish__name" id="dishName"></h2>
+        <p class="dish__price" id="dishPrice"></p>
+        <p class="dish__desc" id="dishDesc"></p>
+        <div class="dish__vars" id="dishVariants" hidden></div>
+        <p class="dish__incart" id="dishInCart" hidden></p>
+      </div>
+    </div>
+    <div class="dish__foot">
+      <div class="dish__qty">
+        <button type="button" id="dishMinus" aria-label="−">−</button>
+        <span id="dishQty">1</span>
+        <button type="button" id="dishPlus" aria-label="+">+</button>
+      </div>
+      <button type="button" class="btn btn--primary dish__add" id="dishAdd"><span id="dishAddLabel">В корзину</span></button>
+    </div>
+  </section>
+
   <!-- Меню сайта (телефон) -->
   <div class="overlay" id="navOverlay" hidden></div>
   <aside class="sidenav" id="sideNav" aria-hidden="true" aria-label="Меню сайта">
     <div class="sidenav__head">
-      <img src="img/emblem.png?v=14" alt="" width="40" height="40">
+      <img src="img/emblem.png?v=15" alt="" width="40" height="40">
       <b>Adele Sushi</b>
       <button class="icon-btn" id="navClose" type="button" aria-label="Закрыть">
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg>
@@ -342,8 +369,8 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/config.js?v=14"></script>
-  <script src="js/menu.js?v=14"></script>
-  <script src="js/app.js?v=14"></script>
+  <script src="js/config.js?v=15"></script>
+  <script src="js/menu.js?v=15"></script>
+  <script src="js/app.js?v=15"></script>
 </body>
 </html>
