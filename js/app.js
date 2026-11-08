@@ -804,7 +804,7 @@
     if (cached && cached.text && applySheet(cached.text)) { renderMenu(); renderCart(); }
     var ctrl = window.AbortController ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 6000);
-    var url = CFG.sheetCsv + (CFG.sheetCsv.indexOf("?") < 0 ? "?" : "&") + "t=" + Math.floor(Date.now() / 60000);
+    var url = CFG.sheetCsv + (CFG.sheetCsv.indexOf("?") < 0 ? "?" : "&") + "t=" + Date.now();
     fetch(url, ctrl ? { signal: ctrl.signal, cache: "no-store" } : { cache: "no-store" })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
       .then(function (text) {
