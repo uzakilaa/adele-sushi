@@ -7,7 +7,7 @@ window.CONFIG = {
 
   // Google Таблица с ценами и наличием (ссылка «Опубликовать в интернете» → CSV).
   // Пусто: сайт берёт цены из menu.js.
-  sheetCsv: "",
+  sheetCsv: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSze8c9HFxtgzGTxUUZpptKa02pRUig-q9YaR19ugumiv-m-s9Q7QfzxbbkIMt6mNVIKTyUIlR5yPmx/pub?gid=0&single=true&output=csv",
 
   // Телефон для звонков (показывается на сайте)
   phone: "+77054936040",
