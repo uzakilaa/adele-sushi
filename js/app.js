@@ -160,11 +160,19 @@
   });
 
   function keyOf(id, vi) { return id + "|" + (vi == null ? -1 : vi); }
+  // выбранный вариант блюда, пропуская варианты, которых нет в наличии
+  function selVi(it) {
+    if (!it.v) return null;
+    var s = state.sel[it.id];
+    if (s != null && it.v[s] && !it.v[s].off) return s;
+    for (var i = 0; i < it.v.length; i++) if (!it.v[i].off) return i;
+    return 0;
+  }
   function parseKey(k) {
     var p = k.split("|"); var it = ITEMS[p[0]]; var vi = Number(p[1]);
     if (!it) return null;
     var v = vi >= 0 && it.v ? it.v[vi] : null;
-    if (vi >= 0 && !v) return null;
+    if (vi >= 0 && (!v || v.off)) return null;
     return { item: it, vi: vi, variant: v, price: v ? v.p : it.p };
   }
   // убираем из корзины позиции, которых больше нет в меню
@@ -195,7 +203,7 @@
   function lunchLocked(it) { return isLunch(it) && !lunchOpenNow(); }
 
   function cardFootHtml(it) {
-    var vi = it.v ? (state.sel[it.id] || 0) : null;
+    var vi = selVi(it);
     var price = it.v ? it.v[vi].p : it.p;
     var q = state.cart[keyOf(it.id, vi)] || 0;
     var ctrl = lunchLocked(it)
@@ -216,8 +224,8 @@
           (it.zoom ? ' style="transform:scale(' + Number(it.zoom) + ')"' : "") + ' loading="lazy" decoding="async">'
       : '<div class="ph">' + ICONS[icon || "roll"] + "</div>";
     // На карточке только фото, название и цена. Описание и варианты открываются в окне блюда.
-    var sel = it.v ? (state.sel[it.id] || 0) : null;
-    var varNote = it.v && it.v.length > 1 ? '<p class="card__var">' + esc(vlabel(it.v[sel])) + " · " + esc(t("moreVariants")) + "</p>" : "";
+    var sel = selVi(it);
+    var varNote = it.v && it.v.filter(function (x) { return !x.off; }).length > 1 ? '<p class="card__var">' + esc(vlabel(it.v[sel])) + " · " + esc(t("moreVariants")) + "</p>" : "";
     return '<article class="card" data-id="' + it.id + '">' +
       '<button type="button" class="card__open" data-open aria-label="' + esc(name(it)) + '">' +
         '<div class="card__media' + (it.fit === "contain" ? " is-contain" : "") + (it.shape ? " card__media--" + it.shape : "") + '">' + media +
@@ -327,7 +335,7 @@
     var it = ITEMS[id];
     $(".card__foot", card).innerHTML = cardFootHtml(it);
     var vn = $(".card__var", card);
-    if (vn && it.v) vn.textContent = vlabel(it.v[state.sel[id] || 0]) + " · " + t("moreVariants");
+    if (vn && it.v) vn.textContent = vlabel(it.v[selVi(it)]) + " · " + t("moreVariants");
   }
 
   menuEl.addEventListener("click", function (e) {
@@ -336,7 +344,7 @@
     var act = e.target.closest("[data-act]");
     if (act && act.getAttribute("data-act") === "locked") { openLunchInfo(); return; }
     if (act) {
-      var k = keyOf(id, it.v ? (state.sel[id] || 0) : null);
+      var k = keyOf(id, selVi(it));
       changeQty(k, act.getAttribute("data-act") === "inc" ? 1 : -1, true);
       return;
     }
@@ -356,6 +364,7 @@
     $("#dishSave").hidden = !old; if (old) $("#dishSave").textContent = t("save") + " " + money(old - price);
     $("#dishVariants").hidden = !it.v;
     $("#dishVariants").innerHTML = it.v ? it.v.map(function (v, i) {
+      if (v.off) return "";
       return '<button type="button" class="dish-var' + (i === dish.vi ? " is-active" : "") + '" data-vi="' + i + '">' +
         "<span>" + esc(vlabel(v)) + "</span><b>" + money(v.p) + "</b></button>";
     }).join("") : "";
@@ -370,7 +379,7 @@
   }
   function openDish(id) {
     var it = ITEMS[id];
-    dish = { id: id, vi: it.v ? (state.sel[id] || 0) : null, qty: 1 };
+    dish = { id: id, vi: selVi(it), qty: 1 };
     renderDish();
     dishLastFocus = document.activeElement;
     $("#dishOverlay").hidden = false; $("#dishSheet").classList.add("is-open");
@@ -745,6 +754,67 @@
     update();
   }
 
+  /* ---------------- prices and stock from Google Sheet ---------------- */
+  // Владелец меняет цену и наличие в Google Таблице, сайт берёт опубликованный CSV.
+  // Если таблица недоступна, остаётся меню из menu.js.
+  MENU.forEach(function (c) { c.items.forEach(function (it) { it._baseHidden = !!it.hidden; }); });
+  function parseCsv(text) {
+    var rows = [], row = [], cell = "", q = false;
+    for (var i = 0; i < text.length; i++) {
+      var ch = text[i];
+      if (q) {
+        if (ch === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; }
+        else cell += ch;
+      } else if (ch === '"') q = true;
+      else if (ch === ",") { row.push(cell); cell = ""; }
+      else if (ch === "\n") { row.push(cell); rows.push(row); row = []; cell = ""; }
+      else if (ch !== "\r") cell += ch;
+    }
+    if (cell || row.length) { row.push(cell); rows.push(row); }
+    return rows;
+  }
+  function num(x) { var d = String(x || "").replace(/[^0-9]/g, ""); return d ? Number(d) : 0; }
+  function isOff(x) { return /^(нет|no|жоқ|0|-|x|х)$/i.test(String(x || "").trim()); }
+  function applySheet(text) {
+    var rows = parseCsv(text); if (rows.length < 2) return false;
+    var applied = 0;
+    rows.slice(1).forEach(function (r) {
+      var code = (r[0] || "").trim(); if (!code) return;
+      var p = code.split("|"), it = ITEMS[p[0]]; if (!it) return;
+      var price = num(r[4]), off = isOff(r[5]), old = num(r[6]);
+      if (p.length > 1 && it.v) {
+        var v = it.v[Number(p[1])]; if (!v) return;
+        if (price) v.p = price; v.off = off;
+      } else {
+        if (price) it.p = price; it._off = off; it.old = old || undefined;
+      }
+      applied++;
+    });
+    MENU.forEach(function (c) { c.items.forEach(function (it) {
+      var allOff = it.v ? it.v.every(function (v) { return v.off; }) : it._off;
+      it.hidden = it._baseHidden || !!allOff;
+    }); });
+    Object.keys(state.cart).forEach(function (k) { var r = parseKey(k); if (!r || r.item.hidden) delete state.cart[k]; });
+    save("cart", state.cart);
+    return applied > 0;
+  }
+  function loadSheet() {
+    if (!CFG.sheetCsv) return;
+    var cached = load("sheet", null);
+    if (cached && cached.text && applySheet(cached.text)) { renderMenu(); renderCart(); }
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 6000);
+    var url = CFG.sheetCsv + (CFG.sheetCsv.indexOf("?") < 0 ? "?" : "&") + "t=" + Math.floor(Date.now() / 60000);
+    fetch(url, ctrl ? { signal: ctrl.signal, cache: "no-store" } : { cache: "no-store" })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function (text) {
+        clearTimeout(timer);
+        if (cached && cached.text === text) return;
+        if (applySheet(text)) { save("sheet", { text: text }); renderMenu(); renderCart(); }
+      })
+      .catch(function () { clearTimeout(timer); });
+  }
+
   /* ---------------- toast ---------------- */
   var tt;
   function toast(msg) {
@@ -906,6 +976,7 @@
   syncForm();
   applyLang();
   renderReviews();
+  loadSheet();
   // каждую минуту обновляем «Открыто/Закрыто» и статус бизнес-ланчей
   function updateLunchStatus() {
     var el = document.querySelector(".lunch-head__status"); if (!el) return;
