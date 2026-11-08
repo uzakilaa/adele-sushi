@@ -26,6 +26,8 @@
       promosTitle: "Акции", faqTitle: "Частые вопросы", faqChip: "Вопросы",
       lunchTitle: "Бизнес-ланчи", lunchSub: "Выгодные наборы на обед: экономия до 2 350 ₸.", lunchOnly: "Только по будням",
       moreVariants: "ещё варианты", inCart: "Уже в корзине",
+      sWaTitle: "Пишите в WhatsApp", sWaFast: "Отвечаем за 5 минут, даже в час пик", sWaHow: "Можно прислать геометку, и курьер не будет звонить",
+      sCallTitle: "Позвоните нам", liveText: "Смотрите, как готовят ваш заказ", fContacts: "Контакты", fSocial: "Мы в соцсетях",
       lunchNow: "Доступно сейчас", lunchLater: "Сейчас недоступно, ждём вас в пн-чт", save: "Выгода",
       navMenu: "Меню", navPromos: "Акции", navAbout: "О нас", navReviews: "Отзывы", navBiz: "Для компаний", navFaq: "Вопросы",
       ts1: "с 2022 года", ts2: "открытая кухня", ts3: "100% халяль", ts4: "эфиры в TikTok", aboutTrust: "Почему нам доверяют семьи",
@@ -77,6 +79,8 @@
       promosTitle: "Акциялар", faqTitle: "Жиі қойылатын сұрақтар", faqChip: "Сұрақтар",
       lunchTitle: "Бизнес-ланчтар", lunchSub: "Түскі асқа тиімді жиынтықтар: 2 350 ₸-ге дейін үнем.", lunchOnly: "Тек жұмыс күндері",
       moreVariants: "басқа нұсқалар", inCart: "Себетте бар",
+      sWaTitle: "WhatsApp-қа жазыңыз", sWaFast: "5 минутта жауап береміз, қарбалас уақытта да", sWaHow: "Геолокация жіберсеңіз, курьер қоңырау шалмайды",
+      sCallTitle: "Бізге қоңырау шалыңыз", liveText: "Тапсырысыңыздың қалай дайындалатынын көріңіз", fContacts: "Байланыс", fSocial: "Әлеуметтік желілер",
       lunchNow: "Қазір қолжетімді", lunchLater: "Қазір қолжетімсіз, Дс-Бс күтеміз", save: "Үнем",
       navMenu: "Мәзір", navPromos: "Акциялар", navAbout: "Біз туралы", navReviews: "Пікірлер", navBiz: "Компанияларға", navFaq: "Сұрақтар",
       ts1: "2022 жылдан бері", ts2: "ашық ас үй", ts3: "100% халал", ts4: "TikTok-та эфир", aboutTrust: "Отбасылар бізге неге сенеді",
@@ -527,6 +531,7 @@
     var el = $("#openStatus");
     el.textContent = isOpen ? t("open") : t("closed");
     el.className = "hero__status " + (isOpen ? "open" : "closed");
+    var fo = $("#footerOpen"); if (fo) { fo.textContent = el.textContent; fo.className = "footer__open " + (isOpen ? "open" : "closed"); }
   }
 
   /* ---------------- scroll spy for chips ---------------- */
@@ -693,24 +698,116 @@
     state.lang = state.lang === "ru" ? "kk" : "ru"; save("lang", state.lang); applyLang();
   });
 
-  /* ---------------- address & hours dialog ---------------- */
-  var infoDlg = $("#infoDlg");
-  function fillInfo() {
-    $("#infoAddr").textContent = CFG.address ? CFG.address[state.lang] : CFG.city[state.lang];
-    $("#infoHours").textContent = t("iDaily") + ", " + CFG.open + "-" + CFG.close;
-    $("#quickWa").href = "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(t("waHello"));
-    $("#navWa").href = $("#quickWa").href;
-    $("#navAddr").textContent = $("#infoAddr").textContent;
-    $("#navHours").textContent = $("#infoHours").textContent;
+  /* ---------------- contact cards and stories ---------------- */
+  // Drawn illustrations (own SVG, no third-party images)
+  var ART = {
+    pin: '<svg viewBox="0 0 200 170" aria-hidden="true"><defs>' +
+      '<radialGradient id="gPin" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#ff8a6b"/><stop offset=".45" stop-color="#e2412b"/><stop offset="1" stop-color="#8e1c12"/></radialGradient>' +
+      '<radialGradient id="gClk" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#ff7a5c"/><stop offset=".5" stop-color="#d63a26"/><stop offset="1" stop-color="#7d170e"/></radialGradient>' +
+      '<radialGradient id="gFace" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e9e2dc"/></radialGradient>' +
+      '<radialGradient id="gSh" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>' +
+      '<ellipse cx="96" cy="150" rx="78" ry="12" fill="url(#gSh)"/>' +
+      '<circle cx="138" cy="98" r="40" fill="url(#gClk)"/><circle cx="138" cy="98" r="31" fill="url(#gFace)"/>' +
+      '<g stroke="#b3271a" stroke-width="2.4" stroke-linecap="round"><path d="M138 72v4M138 120v4M112 98h4M160 98h4"/></g>' +
+      '<path d="M138 98V80M138 98l13 8" stroke="#1d1b19" stroke-width="4.2" stroke-linecap="round"/><circle cx="138" cy="98" r="4" fill="#d63a26"/>' +
+      '<path d="M70 20c-25 0-44 19-44 43 0 32 44 78 44 78s44-46 44-78c0-24-19-43-44-43z" fill="url(#gPin)"/>' +
+      '<circle cx="70" cy="62" r="16" fill="#fff"/><circle cx="70" cy="62" r="7" fill="#d63a26"/>' +
+      '<path d="M45 42c6-9 15-14 25-14" stroke="#fff" stroke-opacity=".55" stroke-width="5" stroke-linecap="round" fill="none"/></svg>',
+    chat: '<svg viewBox="0 0 200 170" aria-hidden="true"><defs>' +
+      '<radialGradient id="gWa" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#7bf0a6"/><stop offset=".5" stop-color="#25c463"/><stop offset="1" stop-color="#0f7a3a"/></radialGradient>' +
+      '<radialGradient id="gRd" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#ff8a6b"/><stop offset=".5" stop-color="#e2412b"/><stop offset="1" stop-color="#8e1c12"/></radialGradient>' +
+      '<radialGradient id="gSh2" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>' +
+      '<ellipse cx="100" cy="152" rx="74" ry="11" fill="url(#gSh2)"/>' +
+      '<path d="M120 34h44a18 18 0 0 1 18 18v26a18 18 0 0 1-18 18h-8l-14 14v-14h-22a18 18 0 0 1-18-18V52a18 18 0 0 1 18-18z" fill="url(#gRd)"/>' +
+      '<circle cx="128" cy="65" r="5.5" fill="#fff"/><circle cx="143" cy="65" r="5.5" fill="#fff"/><circle cx="158" cy="65" r="5.5" fill="#fff"/>' +
+      '<circle cx="76" cy="92" r="52" fill="url(#gWa)"/><path d="M38 140l8-26" stroke="#25c463" stroke-width="16" stroke-linecap="round"/>' +
+      '<path d="M76 58a34 34 0 0 0-29 51l-5 17 18-5a34 34 0 1 0 16-63z" fill="none" stroke="#fff" stroke-width="5"/>' +
+      '<path d="M64 76c-2 0-4 2-4 6 0 6 5 13 10 18s12 9 17 9c4 0 7-2 7-5l-1-4-8-4-4 3c-4-2-8-6-10-10l3-4-4-8z" fill="#fff"/>' +
+      '<path d="M48 64c6-8 14-12 22-13" stroke="#fff" stroke-opacity=".5" stroke-width="5" stroke-linecap="round" fill="none"/></svg>',
+    phone: '<svg viewBox="0 0 200 170" aria-hidden="true"><defs>' +
+      '<linearGradient id="gPh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7a5c"/><stop offset=".55" stop-color="#d63a26"/><stop offset="1" stop-color="#7d170e"/></linearGradient>' +
+      '<linearGradient id="gScr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3330"/><stop offset="1" stop-color="#14110f"/></linearGradient>' +
+      '<radialGradient id="gSh3" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>' +
+      '<ellipse cx="96" cy="152" rx="70" ry="11" fill="url(#gSh3)"/>' +
+      '<g transform="rotate(-14 96 86)"><rect x="62" y="18" width="70" height="132" rx="16" fill="url(#gPh)"/>' +
+      '<rect x="69" y="30" width="56" height="104" rx="9" fill="url(#gScr)"/>' +
+      '<circle cx="97" cy="76" r="18" fill="#25c463"/><path d="M90 69c-1 0-2 1-2 3 0 4 3 8 6 11s7 6 10 6c2 0 4-1 4-3l-1-3-5-2-2 2c-3-1-5-4-6-6l2-2-2-5z" fill="#fff"/>' +
+      '<rect x="80" y="110" width="34" height="8" rx="4" fill="#d63a26"/><rect x="88" y="23" width="18" height="3" rx="1.5" fill="#7d170e"/></g>' +
+      '<g fill="none" stroke="#ff7a5c" stroke-width="5" stroke-linecap="round"><path d="M150 52a26 26 0 0 1 0 36"/><path d="M162 40a42 42 0 0 1 0 60" stroke-opacity=".6"/><path d="M40 60a26 26 0 0 0 0 36" stroke-opacity=".6"/></g></svg>'
+  };
+  $$("[data-art]").forEach(function (el) { el.innerHTML = ART[el.getAttribute("data-art")]; });
+
+  function addrText() { return CFG.address ? CFG.address[state.lang] : CFG.city[state.lang]; }
+  function hoursText() { return t("iDaily") + ", " + CFG.open + "-" + CFG.close; }
+  function waHref() { return "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(t("waHello")); }
+  function stories() {
+    return [
+      { art: "pin", title: t("qAddress"), lines: [addrText(), hoursText(), t("iDeliveryText")], btn: t("iMap"), href: CFG.map || CFG.twogis, ext: true },
+      { art: "chat", title: t("sWaTitle"), lines: [CFG.phoneLabel, t("sWaFast"), t("sWaHow")], btn: t("qWrite"), href: waHref(), ext: true },
+      { art: "phone", title: t("sCallTitle"), lines: [CFG.phoneLabel, hoursText()], btn: t("qCall"), href: "tel:" + CFG.phone, ext: false }
+    ];
   }
-  $("#infoOpen").addEventListener("click", function () {
-    fillInfo();
-    if (infoDlg.showModal) infoDlg.showModal(); else infoDlg.setAttribute("open", "");
+  function fillInfo() {
+    $("#navWa").href = waHref();
+    $("#navAddr").textContent = addrText();
+    $("#navHours").textContent = hoursText();
+  }
+
+  var sto = { i: 0, timer: null, start: 0, open: false, lastFocus: null };
+  var STORY_MS = 7000;
+  function showStory(i) {
+    var list = stories();
+    if (i < 0) i = 0;
+    if (i >= list.length) { closeStory(); return; }
+    sto.i = i;
+    var s = list[i];
+    $("#storyArt").innerHTML = ART[s.art];
+    $("#storyTitle").textContent = s.title;
+    $("#storyLines").innerHTML = s.lines.map(function (l, k) { return "<p" + (k === 0 ? ' class="is-main"' : "") + ">" + esc(l) + "</p>"; }).join("");
+    var btn = $("#storyBtn"); btn.textContent = s.btn; btn.href = s.href || "#";
+    if (s.ext) { btn.target = "_blank"; btn.rel = "noopener"; } else { btn.removeAttribute("target"); }
+    $("#storyBars").innerHTML = list.map(function (_, k) {
+      return '<span class="story__bar' + (k < i ? " is-done" : "") + '"><i' + (k === i ? ' class="is-run"' : "") + "></i></span>";
+    }).join("");
+    $("#story").classList.remove("is-anim"); void $("#story").offsetWidth; $("#story").classList.add("is-anim");
+    clearTimeout(sto.timer);
+    sto.timer = setTimeout(function () { showStory(sto.i + 1); }, STORY_MS);
+  }
+  function openStory(i) {
+    sto.lastFocus = document.activeElement; sto.open = true;
+    $("#story").hidden = false; document.body.style.overflow = "hidden";
+    requestAnimationFrame(function () { $("#story").classList.add("is-open"); });
+    showStory(i);
+    setTimeout(function () { $("#storyClose").focus(); }, 60);
+  }
+  function closeStory() {
+    if (!sto.open) return;
+    sto.open = false; clearTimeout(sto.timer);
+    $("#story").classList.remove("is-open"); document.body.style.overflow = "";
+    setTimeout(function () { if (!sto.open) $("#story").hidden = true; }, 250);
+    if (sto.lastFocus) sto.lastFocus.focus();
+  }
+  $$("[data-story]").forEach(function (b) {
+    b.addEventListener("click", function () { openStory(Number(b.getAttribute("data-story"))); });
   });
-  $("#infoClose").addEventListener("click", function () { infoDlg.close ? infoDlg.close() : infoDlg.removeAttribute("open"); });
-  infoDlg.addEventListener("click", function (e) { if (e.target === infoDlg && infoDlg.close) infoDlg.close(); });
-  $("#infoMap").href = CFG.map || CFG.twogis || "#";
-  $("#infoCall").textContent = CFG.phoneLabel; $("#infoCall").href = "tel:" + CFG.phone;
+  $("#storyClose").addEventListener("click", closeStory);
+  $("#storyPrev").addEventListener("click", function () { showStory(sto.i - 1); });
+  $("#storyNext").addEventListener("click", function () { showStory(sto.i + 1); });
+  $("#story").addEventListener("click", function (e) { if (e.target === $("#story")) closeStory(); });
+  $("#storyBtn").addEventListener("click", function () { clearTimeout(sto.timer); });
+  document.addEventListener("keydown", function (e) {
+    if (!sto.open) return;
+    if (e.key === "Escape") closeStory();
+    if (e.key === "ArrowRight") showStory(sto.i + 1);
+    if (e.key === "ArrowLeft") showStory(sto.i - 1);
+  });
+  // свайп влево/вправо
+  var sx = null;
+  $("#story").addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  $("#story").addEventListener("touchend", function (e) {
+    if (sx == null) return; var dx = e.changedTouches[0].clientX - sx; sx = null;
+    if (Math.abs(dx) > 50) showStory(st.i + (dx < 0 ? 1 : -1));
+  });
 
   /* ---------------- site menu (phone) ---------------- */
   var navOpenState = false;
@@ -731,9 +828,10 @@
   $("#navCall").textContent = CFG.phoneLabel; $("#navCall").href = "tel:" + CFG.phone;
   $("#navIg").href = CFG.instagram; $("#navTt").href = CFG.tiktok; $("#navGis").href = CFG.map || CFG.twogis || "#";
 
-  // контакты из конфига
-  $("#heroCall").href = "tel:" + CFG.phone;
-  $("#footerPhone").textContent = CFG.phoneLabel; $("#footerPhone").href = "tel:" + CFG.phone;
+  // контакты в подвале
+  $("#footerPhoneNum").textContent = CFG.phoneLabel; $("#footerPhone").href = "tel:" + CFG.phone;
+  $("#footerWaNum").textContent = "WhatsApp"; $("#footerWa").href = "https://wa.me/" + CFG.whatsapp;
+  $("#liveLink").href = CFG.tiktok;
   $("#footerHours").textContent = CFG.open + "-" + CFG.close;
   $("#igLink").href = CFG.instagram; $("#ttLink").href = CFG.tiktok;
   $("#year").textContent = new Date().getFullYear();
