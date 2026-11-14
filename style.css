@@ -978,8 +978,8 @@ html, body { overflow-x: clip; }
 
 /* Ссылки на документы в футере и согласие под кнопкой заказа (главная) */
 .footer__legal { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 14px 4px 0; font-size: 13px; }
-.footer__legal a { color: #b9b1a7; text-decoration: none; }
-.footer__legal a:hover { color: #fff; text-decoration: underline; }
+.footer__legal a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(111, 106, 99, .35); }
+.footer__legal a:hover { color: var(--ink); text-decoration-color: currentColor; }
 .consent { color: var(--muted); font-size: 12px; line-height: 1.45; margin: 10px 2px 0; text-align: center; }
 .consent a { color: var(--ink); text-decoration: underline; }
 .night-note {
