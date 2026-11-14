@@ -3,10 +3,12 @@ html[lang="ru"] .kk, html[lang="kk"] .ru { display: none !important; }
 html { scroll-padding-top: 130px; }
 
 .lg-back {
-  display: inline-flex; align-items: center; height: 40px; padding: 0 12px;
-  border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 13px; color: var(--muted);
+  display: inline-flex; align-items: center; height: 40px; padding: 0 14px;
+  border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 13px;
+  color: var(--accent); background: var(--accent-soft); border: 1px solid rgba(196, 98, 58, .22);
+  transition: background .2s, color .2s;
 }
-.lg-back:hover { color: var(--ink); }
+.lg-back:hover { background: var(--accent); color: #fff; }
 
 .lg-tabs {
   display: flex; gap: 8px; overflow-x: auto; padding-top: 2px; padding-bottom: 10px;
