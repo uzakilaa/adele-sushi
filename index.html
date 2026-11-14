@@ -47,19 +47,19 @@
     "sameAs": ["https://www.instagram.com/adele_sushi.knd", "https://www.tiktok.com/@adele_sushi.knd", "https://2gis.kz/aktobe/firm/70000001089008140"]
   }
   </script>
-  <link rel="icon" type="image/png" href="img/favicon.png?v=33">
+  <link rel="icon" type="image/png" href="img/favicon.png?v=34">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=PT+Serif:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=33">
+  <link rel="stylesheet" href="style.css?v=34">
 </head>
 <body>
 
   <header class="header">
     <div class="header__inner container">
       <a href="#top" class="brand" aria-label="Adele Sushi">
-        <img src="img/emblem.png?v=33" alt="" class="brand__logo" width="44" height="44">
+        <img src="img/emblem.png?v=34" alt="" class="brand__logo" width="44" height="44">
         <span class="brand__text">
           <span class="brand__name">Adele</span>
           <span class="brand__sub">SUSHI</span>
@@ -121,7 +121,7 @@
           <a href="#business" class="btn btn--ghost" data-i18n="toBusiness">Для компаний</a>
         </div>
       </div>
-      <img class="hero__logo" src="img/logo.jpg?v=33" alt="Adele Sushi: пицца, роллы, доставка" width="800" height="800">
+      <img class="hero__logo" src="img/logo.jpg?v=34" alt="Adele Sushi: пицца, роллы, доставка" width="800" height="800">
     </section>
 
     <ul class="trust-strip container" aria-label="Почему Adele">
@@ -153,7 +153,7 @@
       <ol class="steps__list">
         <li class="step"><span class="step__n">1</span><h3 data-i18n="step1t">Соберите корзину</h3><p data-i18n="step1d">Выберите блюда или комбо на компанию.</p></li>
         <li class="step"><span class="step__n">2</span><h3 data-i18n="step2t">Назовите время и адрес</h3><p data-i18n="step2d">Пришлите геометку в WhatsApp, и курьер не будет звонить.</p></li>
-        <li class="step"><span class="step__n">3</span><h3 data-i18n="step3t">Оплатите счёт и ждите</h3><p data-i18n="step3d">Пришлём счёт Kaspi или Halyk. Привезём ±10 минут к вашему времени.</p></li>
+        <li class="step"><span class="step__n">3</span><h3 data-i18n="step3t">Оплатите счёт и ждите</h3><p data-i18n="step3d">Пришлём счёт Kaspi или Halyk. Приготовим и отдадим курьеру ±10 минут к вашему времени.</p></li>
       </ol>
     </section>
 
@@ -201,7 +201,7 @@
           </details>
         </div>
         <div class="about__photos">
-          <figure class="about__ph about__ph--big"><img src="img/about/team.webp?v=33" alt="Команда Adele за столом в кафе" loading="lazy" width="960" height="760"><figcaption data-i18n="capTeam">Наша команда</figcaption></figure>
+          <figure class="about__ph about__ph--big"><img src="img/about/team.webp?v=34" alt="Команда Adele за столом в кафе" loading="lazy" width="960" height="760"><figcaption data-i18n="capTeam">Наша команда</figcaption></figure>
           <figure class="about__ph"><img src="img/about/cafe-bar.webp" alt="Бар-касса в кафе Adele" loading="lazy" width="667" height="865"></figure>
           <figure class="about__ph"><img src="img/about/cafe-room.webp" alt="Зал кафе Adele" loading="lazy" width="667" height="868"></figure>
         </div>
@@ -244,7 +244,7 @@
       <div class="footer__card">
         <div class="footer__col footer__about">
           <div class="footer__brandrow">
-            <img src="img/emblem.png?v=33" alt="" width="52" height="52" class="footer__logo">
+            <img src="img/emblem.png?v=34" alt="" width="52" height="52" class="footer__logo">
             <div><p class="footer__brand">Adele Sushi</p><p class="footer__alt">Адель Суши · Кандыагаш</p><p class="footer__tag" data-i18n="tagline">Пицца · Роллы · Доставка</p></div>
           </div>
           <p class="footer__addr" id="footerCity"></p>
@@ -266,6 +266,11 @@
         </div>
         <img class="footer__deco" src="img/menu/sashe.webp" alt="" aria-hidden="true" loading="lazy">
       </div>
+      <nav class="footer__legal" aria-label="Документы">
+        <a href="legal.html#oferta" data-i18n="fOffer">Публичная оферта</a>
+        <a href="legal.html#delivery" data-i18n="fDelivery">Доставка и оплата</a>
+        <a href="legal.html#privacy" data-i18n="fPrivacy">Политика конфиденциальности</a>
+      </nav>
       <p class="footer__copy">© <span id="year"></span> Adele Sushi</p>
     </div>
   </footer>
@@ -317,6 +322,7 @@
     </div>
 
     <div class="drawer__foot" id="drawerFoot" hidden>
+      <p class="night-note" id="nightNote" hidden data-i18n="nightNote">Сейчас мы закрыты. Заказ подтвердим после 11:00.</p>
       <div class="total"><span data-i18n="total">Итого</span><strong id="cartTotal">0 ₸</strong></div>
       <p class="form-error" id="formError" hidden></p>
       <p class="note" data-i18n="deliveryNote">Стоимость доставки и время уточнит оператор в WhatsApp.</p>
@@ -324,6 +330,7 @@
         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M17.5 14.4c-.3-.15-1.75-.86-2-.96-.28-.1-.48-.15-.68.15-.2.3-.77.96-.95 1.16-.17.2-.35.22-.65.07a8.1 8.1 0 0 1-2.4-1.48 9 9 0 0 1-1.65-2.06c-.17-.3 0-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.62-.93-2.22-.24-.58-.5-.5-.68-.5h-.58a1.1 1.1 0 0 0-.8.37 3.4 3.4 0 0 0-1.05 2.5c0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.5.71.3 1.27.5 1.7.63.72.23 1.37.2 1.88.12.58-.08 1.75-.72 2-1.4.25-.7.25-1.3.18-1.42-.08-.13-.28-.2-.58-.35zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3 .78.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
         <span data-i18n="sendWa">Оформить в WhatsApp</span>
       </button>
+      <p class="consent"><span data-i18n="consPre">Оформляя заказ, вы принимаете</span> <a href="legal.html#oferta" target="_blank" rel="noopener" data-i18n="consOffer">публичную оферту</a> <span data-i18n="consAnd">и</span> <a href="legal.html#privacy" target="_blank" rel="noopener" data-i18n="consPriv">политику конфиденциальности</a><span data-i18n="consPost">.</span></p>
     </div>
   </aside>
 
@@ -369,7 +376,7 @@
   <div class="overlay" id="navOverlay" hidden></div>
   <aside class="sidenav" id="sideNav" aria-hidden="true" aria-label="Меню сайта">
     <div class="sidenav__head">
-      <img src="img/emblem.png?v=33" alt="" width="40" height="40">
+      <img src="img/emblem.png?v=34" alt="" width="40" height="40">
       <b>Adele Sushi</b>
       <button class="icon-btn" id="navClose" type="button" aria-label="Закрыть">
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg>
@@ -416,8 +423,8 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/config.js?v=33"></script>
-  <script src="js/menu.js?v=33"></script>
-  <script src="js/app.js?v=33"></script>
+  <script src="js/config.js?v=34"></script>
+  <script src="js/menu.js?v=34"></script>
+  <script src="js/app.js?v=34"></script>
 </body>
 </html>

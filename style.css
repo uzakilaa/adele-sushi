@@ -975,3 +975,14 @@ html, body { overflow-x: clip; }
 .lmodal__menu { display: inline-block; margin-top: 12px; color: #e8cdb9; font-size: 14px; font-weight: 600; }
 
 .footer__alt { margin: 0 !important; font-size: 12.5px; color: #9d918a; }
+
+/* Ссылки на документы в футере и согласие под кнопкой заказа (главная) */
+.footer__legal { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 14px 4px 0; font-size: 13px; }
+.footer__legal a { color: #b9b1a7; text-decoration: none; }
+.footer__legal a:hover { color: #fff; text-decoration: underline; }
+.consent { color: var(--muted); font-size: 12px; line-height: 1.45; margin: 10px 2px 0; text-align: center; }
+.consent a { color: var(--ink); text-decoration: underline; }
+.night-note {
+  background: #fff6e0; color: #7a5300; border: 1px solid #f1dca6; border-radius: 12px;
+  padding: 8px 12px; font-size: 13px; margin: 0 0 10px;
+}
